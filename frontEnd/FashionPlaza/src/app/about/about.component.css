@@ -1,0 +1,36 @@
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-sm-12, .col-md-12{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.wrapper{
+    display: flex;
+    flex-flow: column;
+    margin: auto 20%;
+    padding: 10vh 0px;
+}
+
+.about-us-image img{
+    width: 90%;
+    height: 70vh;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-family: initial;
+    font-weight: 560;
+    margin-bottom: 5vh;
+}
+
+p{
+    margin-bottom: 3vh;
+}
+
+.about-us-image{
+    margin-top: 4vh;
+}

@@ -1,0 +1,60 @@
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-sm-12, .col-md-12{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.wrapper{
+    display: flex;
+    flex-flow: column;
+    margin: auto 25%;
+    padding: 10vh 0px;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-family: initial;
+    font-weight: 560;
+    margin-bottom: 5vh;
+}
+
+.contact-form{
+    margin-top:8vh;
+}
+
+.contact-form input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 3vh;
+}
+
+.contact-form textarea{
+    width: 100%;
+}
+
+.contact-form button{
+    padding: 12px 20px;
+    margin-top: 1.5vh;
+    background-color: #f84711;
+    color: white;
+    font-style: initial;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 3px;
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+li{
+    list-style-type: none;
+    padding-bottom: 4px;
+}

@@ -1,0 +1,18 @@
+<div>
+    <div class="display-image">
+        <div style="display: flex">
+            <img *ngFor="let item of content;let i = index" [ngClass]="{'active-image': isThisCurrentIndex(i),'inactive-image':!isThisCurrentIndex(i)}"[src]="'../../assets/images/'+item.image"/>
+        </div>
+        <div id="messageBox"  [ngClass]="{'message':true,'men':getCurrentType() == 'men', 'women':getCurrentType() == 'women'}">
+            <p>{{getMessage()}}</p>
+            <button>{{getButtonMessage()}}</button>
+        </div>
+    </div>
+    <div>
+        <div class="carousal-buttons">
+            <span style="padding-right: 0.5vw;" (click)="leftClick()"> <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></span>
+            <div *ngFor="let img of content;let i = index" [ngClass]="{'dots':true,'active':isThisCurrentIndex(i)}"></div>            
+            <span style="padding-left:1vw" (click)="rightClick()"> <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></span>
+        </div>
+    </div>
+</div>

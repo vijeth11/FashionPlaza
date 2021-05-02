@@ -1,0 +1,42 @@
+.card{
+    width: 90%;
+    margin-left: 1vw;
+    border:0px;
+}
+
+.card-content img{
+    width: 100%;
+}
+
+.item-name{
+    font-weight:500;
+    margin:2px 0;
+}
+
+.item-company{
+    margin: 2px 0;  
+}
+
+.item-cost{
+    font-size: 12px;
+    margin: 2px 0;
+}
+
+.sales{
+    position: absolute;
+    border-radius: 100%;
+    padding: 5px;
+    background-color: #f84711;
+    color: white;
+    font-family: initial;
+    font-weight: 700;
+    text-transform: uppercase;
+    right: -25px;
+    height: 55px;
+    width: 57px;
+    font-size: 13px;
+    top: -23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

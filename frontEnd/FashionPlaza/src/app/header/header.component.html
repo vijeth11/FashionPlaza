@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-padder">
+    <div class="header-wrapper">
+      <div class="row medium-wrapper">
+          <div class="col-sm-6 col-md-6">
+            <p class="header-offer">50% on all shoes for a limited time!</p>
+          </div>
+          <div class="col-sm-6 col-md-6">
+            <div class="options">
+              <div style="float: right;">
+                <a class="login">Log in</a>
+                <span>or</span>
+                <a class="login"> Create account</a>               
+                <a class="cart"> <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> &nbsp; Cart:1</a>
+                <input placeholder="search"/>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-12 header-menu">
+    <div class="wrapper">
+      <h1>FASHION PLAZA</h1>
+      <div class="nav-bar">
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>
+              <div class="dropdown-btn">
+                <a class="women-btn">Women <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
+                <div class="women-category-dropdown-content">
+                  <a *ngFor="let item of category['women']">{{ item }}</a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="dropdown-btn-men">
+                <a class="men-btn">Men <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
+                <div class="men-category-dropdown-content">
+                  <a *ngFor="let item of category['men']">{{ item }}</a>
+                </div>
+              </div>
+            </li>
+            <li>Accessories</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

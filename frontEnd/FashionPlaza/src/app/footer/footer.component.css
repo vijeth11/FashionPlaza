@@ -1,0 +1,75 @@
+.row{
+    margin: 0 0;
+}
+
+.footer-menu{
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.content-wrapper{
+    display:flex;
+    flex-flow: row;
+    border-top: 1px solid #dddddd;
+    padding-top: 3vh;
+}
+
+.links, .news, .social, .newsletter{
+    width: 25%;
+}
+
+.links h4, .news h4, .social h4, .newsletter h4{
+    font-size: 1rem;
+    padding-bottom: 0.7vh;
+    font-family: initial;
+    font-weight: 700;
+}
+
+.links ul{
+    list-style: none outside;
+    padding-left:0 !important;
+}
+
+.links li a {
+    color: #403b37;
+    font-size: .85em;
+    text-decoration: none;
+    padding-bottom: 0.5vh;
+}
+
+.links li a:hover {
+    color: #ec2719;    
+}
+
+.news-content h4{
+    font-size: .85em;
+    font-family: initial;
+    font-weight: 700;
+}
+
+.email-input{
+    width: 70%;
+    height: 4vh;
+    padding-left: 11px;
+    border: 0.5px solid grey;
+    border-radius: 2px;
+    font-family: "PT Sans",sans-serif;
+    font-weight: 400;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    margin-top: 1.5vh;
+    background-color: #f84711;
+    color: white;
+    font-style: initial;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 3px;
+}
+
+.social span{
+    padding: 10px;
+}

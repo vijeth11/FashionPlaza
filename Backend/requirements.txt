@@ -1,0 +1,4 @@
+Django>=3
+djangorestframework
+gunicorn>=19.8,<19.9
+whitenoise

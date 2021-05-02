@@ -1,0 +1,192 @@
+<section>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="wrapper home-market">
+        <app-carousal [content]="marketContent"></app-carousal>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="wrapper women-clothing">
+        <h2 >Woman Clothing</h2>
+        <div class="tab">
+          <button class="tablinks active" (click)="tabbutton($event,'best-seller')">Best Seller</button>
+          <button class="tablinks" (click)="tabbutton($event,'new-items')">New Items</button>
+          <button class="tablinks" (click)="tabbutton($event,'sale')">Sale</button>  
+        </div>
+        <div id="best-seller" class="tabcontent active">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+        <div id="new-items" class="tabcontent">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+        <div id="sale" class="tabcontent">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="wrapper men-clothing">
+        <h2 >Man Clothing</h2>
+        <div class="tab">
+          <button class="tablinks active" (click)="tabbutton($event,'best-seller')">Best Seller</button>
+          <button class="tablinks" (click)="tabbutton($event,'new-items')">New Items</button>
+          <button class="tablinks" (click)="tabbutton($event,'sale')">Sale</button>  
+        </div>
+        <div id="best-seller" class="tabcontent active">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+        <div id="new-items" class="tabcontent">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+        <div id="sale" class="tabcontent">
+          <div class="row">
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <app-card></app-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row" style="padding-top: 4vh;padding-bottom: 2vh;">    
+    <div class="col-sm-6 col-md-6 home-about">
+      <div class="wrapper about-block">
+        <h2>Welcome to FASHION PLAZA</h2>
+        <p>
+            Our products are inspired by the people and world around us. Beautiful, high 
+            quality goods that are designed especially for you. Discover our story and 
+            meet the people that make <a style="color: #f84711;" [routerLink]="['/about']" >our brand</a> what it is.
+        </p>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <div class="wrapper about-block-image">
+          <img style="width: 100%;" [src]="'../../assets/images/About-Home.jpg'">
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="row" style="padding-top: 4vh;padding-bottom: 2vh;">
+    <div class="col-sm-6 col-md-6">
+      <div class="wrapper home-products-image">
+        <img [src]="'../../assets/images/home-product.jpg'" style="width: 100%;">
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-6 home-product">
+      <div class="wrapper home-products">
+        <p>
+          All our products are made using the finest materials and craftsmanship. 
+          Each product is packaged and delivered with care. Check out our <a style="color: #f84711;">FAQs</a>
+          for more questions on shipping, processing, and more.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrapper" style="padding-top: 4vh;padding-bottom: 5vh;">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 home-contact">
+        <div class="contact">
+          <p>140 Arbindo Street Ottana <br> Oklohoma CA L2Q 1K4</p>
+          <ul>
+            <li>Mon-Fri, 10am-9pm</li>
+            <li>Saturday, 11am-9pm</li>
+            <li>Sunday, 11am - 5pm</li>
+          </ul>
+          <button><span><i class="fa fa-map-marker" aria-hidden="true"></i></span> directions</button>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div>
+          <img style="width: 100%;height: 50vh;" [src]="'../../assets/images/store.jpg'">
+        </div>
+      </div>
+    </div>
+  </div>  
+</section>

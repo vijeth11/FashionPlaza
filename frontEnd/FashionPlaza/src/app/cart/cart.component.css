@@ -1,0 +1,145 @@
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-sm-12, .col-md-12{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.col-sm-6, .col-md-6{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.wrapper{
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.header h1{
+    font-size: 30px;
+    margin-top: 5vh;
+    margin-bottom: 6vh;
+    font-family: emoji;
+    font-weight: 600;
+}
+
+.table-header{
+   display: flex;
+   flex-flow: row;
+   justify-content: flex-end;
+   margin-bottom: 4vh;
+}
+
+.table-header span{
+    margin-left: 12vh;
+    font-size: 20px;
+    font-family: emoji;
+    font-weight: 600;
+}
+
+.table-row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    justify-content: flex-end;
+}
+
+.table-row span{
+    margin-left: 5vw;
+    font-weight: 700;
+}
+
+.table-row input{
+    width: 10%;
+    margin-left: 5vw;
+    padding: 5px;
+    border: 1px solid lightgrey;
+}
+
+.table-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 3vh;
+    margin-bottom: 6vh;
+}
+
+.table-footer .content{
+    display:flex;
+    flex-direction:column;
+    align-items: flex-end;
+}
+
+.buttons button{
+    padding: 12px 20px;
+    margin-top: 1.5vh;
+    background-color: #f84711;
+    border: 1px solid #f84711 !important;
+    color: white;
+    font-style: initial;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.table-footer .content .subtotal{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.table-footer .content .subtotal span{
+    font-weight: 700;
+    padding-left: 10px;
+}
+
+.table-footer .content .instruction{
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 15px;
+}
+
+.normal-button{
+    background-color: white !important;
+    color: #f84711 !important;
+    border: 1px solid #f84711 !important;
+}
+
+.item{
+    display: flex;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+
+.item-image{
+    width: 30%;
+    margin-right: 2vw;
+}
+
+.item-image img{
+    width: 100%;
+}
+
+.item-details{
+    display: flex;
+    flex-flow: column;
+}
+
+.item-details span{
+    font-size: 20px;
+    font-family: initial;
+    font-weight: 700;
+    margin-bottom: 2vh;
+    color:#f84711;
+}
+
+.item-details a{
+    font-size: 13px;
+    color:#f84711;
+}
