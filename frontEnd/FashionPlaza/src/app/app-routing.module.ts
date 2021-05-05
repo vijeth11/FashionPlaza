@@ -1,3 +1,4 @@
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsComponent } from './products/products.component';
@@ -10,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent}, // Add Gaurd
   {path: 'cart', component: CartComponent}, //Add Gaurd
+  {path: 'products/:type/detail/:id',component: ProductDetailComponent},
   {path: 'products/:type', component: ProductsComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'home',component: HomeComponent},
