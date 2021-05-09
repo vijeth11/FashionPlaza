@@ -14,10 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.views.generic import TemplateView
+from rest_framework.routers import DefaultRouter
+from product.views import ProductView, ProductListView, ProductImageView
+from User.views import AdminUserViewSet,CustomerUserViewSet,UserLoginAPIView
+from django.conf.urls.static import static
+from django.conf import settings
 
-urlpatterns = [
+router = DefaultRouter()
+router.register('product',ProductView, basename='product')
+router.register('products',ProductListView, basename = 'products')
+router.register('product-images',ProductImageView,basename = 'product-images')
+router.register('admin', AdminUserViewSet, basename='admin')
+router.register('customer', CustomerUserViewSet, basename='customer')
+
+urlpatterns = static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) + [
     path('admin/', admin.site.urls),
+    path('api/',include(router.urls)),
+    path('api/login/',UserLoginAPIView.as_view(),name="login"),
+    path('api/admin/logout/',AdminUserViewSet.as_view({"get":"logout"})),
+    path('api/customer/logout/',CustomerUserViewSet.as_view({"get":"logout"})),
     re_path('^[/s/S]*',TemplateView.as_view(template_name = "index.html"),name = "home")
 ]

@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'product',
+    'User',
+    'Shopping',
+    'SocialData'
 ]
 
 MIDDLEWARE = [
@@ -88,7 +92,7 @@ WSGI_APPLICATION = 'FashionPlaza.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
@@ -139,3 +143,9 @@ print(BASE_DIR)
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'User.Customer'
