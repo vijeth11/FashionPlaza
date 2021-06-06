@@ -1,4 +1,10 @@
+import { ProductList } from './../store/model/product-list.model';
+import { LoadProductListAction } from './../store/actions/product-list.action';
+import { selectProductListItems } from './../store/selectors/product-list.selector';
+import { environment } from './../../environments/environment';
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../store/model/app-state.models';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +13,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  storeImage:string = environment.imageUrl + "store.jpg";
+  homeProductImage:string = environment.imageUrl + "home-product.jpg";
+  homeAboutImage:string = environment.imageUrl + "About-Home.jpg";
   marketContent:{type:string,message:string,image:string}[]= [
     {
       type:"women",
@@ -19,9 +28,35 @@ export class HomeComponent implements OnInit {
       image:"men.jpg"
     }
   ];
-  constructor(private el:ElementRef) { }
+  ClothsTypeWomen:ProductList[][]=[[]];
+  ClothsTypeMen:ProductList[][]=[[]];
+  constructor(private el:ElementRef,private store:Store<AppState>) { 
+
+  }
 
   ngOnInit() {
+    this.store.pipe(select(selectProductListItems)).subscribe(data => {
+      let countw = 0, countm =0;
+      for(let i of data)
+      {
+        if(i.Type.toLowerCase() == "women"){
+          if(this.ClothsTypeWomen[countw].length == 4){
+            countw++;
+            this.ClothsTypeWomen.push([]);
+          }
+          this.ClothsTypeWomen[countw].push(i);
+        }else{
+          if(this.ClothsTypeMen[countm].length==4){
+            countm++;
+            this.ClothsTypeMen.push([]);
+          }
+          this.ClothsTypeMen[countm].push(i);
+        }
+      }
+      console.log(this.ClothsTypeWomen);
+      console.log(this.ClothsTypeMen);
+    });
+    this.store.dispatch(new LoadProductListAction(""));
   }
 
   tabbutton(event,id){
@@ -35,5 +70,38 @@ export class HomeComponent implements OnInit {
       content.classList.remove("active");
     }
     this.el.nativeElement.querySelector("#"+id).classList.add('active');
+  }
+
+  getBestsellerWomenCloth(){
+    let data = [[]];
+    let count = 0
+    for(let i of this.ClothsTypeWomen){
+      for(let j of i){            
+        if(data[count].length == 4){
+          count++;
+          data[count]=[]
+        }
+        if(j.BestSeller){
+          data[count].push(j);
+        }
+      }
+    }
+    return data;
+  }
+  getBestsellerMenCloth(){
+    let data = [[]];
+    let count = 0
+    for(let i of this.ClothsTypeMen){
+      for(let j of i){            
+        if(data[count].length == 4){
+          count++;
+          data[count]=[]
+        }
+        if(j.BestSeller){
+          data[count].push(j);
+        }
+      }
+    }
+    return data;
   }
 }

@@ -1,7 +1,7 @@
 <div>
     <div class="display-image">
         <div style="display: flex">
-            <img *ngFor="let item of content;let i = index" [ngClass]="{'active-image': isThisCurrentIndex(i),'inactive-image':!isThisCurrentIndex(i)}"[src]="'../../assets/images/'+item.image"/>
+            <img *ngFor="let item of content;let i = index" [ngClass]="{'active-image': isThisCurrentIndex(i),'inactive-image':!isThisCurrentIndex(i)}"[src]="getImageUrl(item.image)"/>
         </div>
         <div id="messageBox"  [ngClass]="{'message':true,'men':getCurrentType() == 'men', 'women':getCurrentType() == 'women'}">
             <p>{{getMessage()}}</p>

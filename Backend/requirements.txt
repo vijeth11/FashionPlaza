@@ -3,3 +3,5 @@ djangorestframework
 gunicorn>=19.8,<19.9
 whitenoise
 Pillow
+django-filter
+django-cors-headers

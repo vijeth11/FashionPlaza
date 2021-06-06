@@ -12,8 +12,11 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-        depth = 1
-
+        depth = 1    
+class ProductListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id','Name','Cost','Company','Discount','Sale','PrimaryImage','BestSeller','ItemAddedTime','Type','Subtype']
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage

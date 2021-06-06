@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.conf import settings
 import os
@@ -12,7 +13,7 @@ def fileRename(instance,filename):
             return filename
         return os.path.join(path,filename)
 class Product(models.Model):
-    Name = models.CharField(max_length=30)
+    Name = models.CharField(max_length=100)
     Description = models.TextField()
     Cost = models.DecimalField(max_digits=9, decimal_places=4)
     Company = models.CharField(max_length=20)
@@ -21,7 +22,8 @@ class Product(models.Model):
     Discount = models.IntegerField()
     Sale = models.BooleanField()
     PrimaryImage = models.ImageField(upload_to = fileRename)
-
+    BestSeller = models.BooleanField(default=True)
+    ItemAddedTime = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.Name
 

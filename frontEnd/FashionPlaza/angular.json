@@ -59,7 +59,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FashionPlaza:build"
+            "browserTarget": "FashionPlaza:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

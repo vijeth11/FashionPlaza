@@ -1,3 +1,5 @@
+import { reducer, metaReducers } from './store/reducers/AppState.reducer';
+import { FassionPlazaService } from './fassionplaza.service';
 import { InfrastructureModule } from './../infrastructure/infrastructure.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,6 +15,13 @@ import { ProductsComponent } from './products/products.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductListEffects } from './store/effect/product-list.effect';
+import { ProductEffects } from './store/effect/product.effect';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -30,9 +39,13 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    InfrastructureModule
+    InfrastructureModule,
+    HttpClientModule,
+    StoreModule.forRoot(reducer),
+    EffectsModule.forRoot([ProductListEffects, ProductEffects]),
+    StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
-  providers: [],
+  providers: [FassionPlazaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

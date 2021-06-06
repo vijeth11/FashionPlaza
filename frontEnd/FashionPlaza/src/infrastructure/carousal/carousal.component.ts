@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
@@ -70,5 +71,9 @@ export class CarousalComponent implements AfterViewInit{
             this.el.nativeElement.querySelector('#messageBox').classList.remove('inactive-image'); 
             this.el.nativeElement.querySelector('#messageBox').classList.add('message');    
         },time);
+    }
+
+    getImageUrl(image:string){
+        return environment.imageUrl + image;
     }
 }

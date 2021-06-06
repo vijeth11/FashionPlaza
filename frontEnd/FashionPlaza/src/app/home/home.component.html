@@ -18,8 +18,15 @@
           <button class="tablinks" (click)="tabbutton($event,'sale')">Sale</button>  
         </div>
         <div id="best-seller" class="tabcontent active">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
+          <div class="row" *ngFor="let rowData of getBestsellerWomenCloth()">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card 
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"></app-card>
+            </div>
+            <!--<div class="col-sm-3 col-md-3">
               <app-card></app-card>
             </div>
             <div class="col-sm-3 col-md-3">
@@ -27,10 +34,7 @@
             </div>
             <div class="col-sm-3 col-md-3">
               <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
+            </div>-->
           </div>
         </div>
         <div id="new-items" class="tabcontent">
@@ -145,7 +149,7 @@
     </div>
     <div class="col-sm-6 col-md-6">
       <div class="wrapper about-block-image">
-          <img style="width: 100%;" [src]="'../../assets/images/About-Home.jpg'">
+          <img style="width: 100%;" [src]="homeAboutImage">
       </div>
     </div>
   </div>
@@ -154,7 +158,7 @@
   <div class="row" style="padding-top: 4vh;padding-bottom: 2vh;">
     <div class="col-sm-6 col-md-6">
       <div class="wrapper home-products-image">
-        <img [src]="'../../assets/images/home-product.jpg'" style="width: 100%;">
+        <img [src]="homeProductImage" style="width: 100%;">
       </div>
     </div>
     <div class="col-sm-6 col-md-6 home-product">
@@ -184,7 +188,7 @@
       </div>
       <div class="col-sm-6 col-md-6">
         <div>
-          <img style="width: 100%;height: 50vh;" [src]="'../../assets/images/store.jpg'">
+          <img style="width: 100%;height: 50vh;" [src]="storeImage">
         </div>
       </div>
     </div>
