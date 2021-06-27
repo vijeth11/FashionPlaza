@@ -1,6 +1,6 @@
 # FashionPlaza
 
-This project is of a website for selling different brands of cloth from all across the world. It uses Angular8, Ngrx store managment for fontend and django as backend technology. I am using sqlite and postgress sql as database. This application uses docker images technology to launch and Travis for CI\CD pipeline.
+This project is of a website for selling different brands of cloth from all across the world. It uses Angular8, Ngrx store managment for fontend and django, django rest framework as backend technology. I am using sqlite and postgress sql as database. This application uses docker images technology to launch and Travis for CI\CD pipeline.
 
 ## Development server
 
