@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/model/app-state.models';
 
 @Component({
   selector: 'app-products',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store:Store<AppState>) { }
 
   ngOnInit() {
+    
   }
 
 }

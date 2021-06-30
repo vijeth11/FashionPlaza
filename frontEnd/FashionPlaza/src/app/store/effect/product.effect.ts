@@ -1,4 +1,4 @@
-import { FassionPlazaService } from './../../fassionplaza.service';
+import { FassionPlazaService } from '../../shared/services/fassionplaza.service';
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap} from "rxjs/operators";

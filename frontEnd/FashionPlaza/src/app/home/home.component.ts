@@ -1,10 +1,10 @@
 import { ProductList } from './../store/model/product-list.model';
-import { LoadProductListAction } from './../store/actions/product-list.action';
 import { selectProductListItems } from './../store/selectors/product-list.selector';
 import { environment } from './../../environments/environment';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/model/app-state.models';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   ];
   ClothsTypeWomen:ProductList[][]=[[]];
   ClothsTypeMen:ProductList[][]=[[]];
-  constructor(private el:ElementRef,private store:Store<AppState>) { 
+  constructor(private el:ElementRef,private store:Store<AppState>,private activatedRoute: ActivatedRoute) { 
 
   }
 
@@ -55,53 +55,54 @@ export class HomeComponent implements OnInit {
       }
       console.log(this.ClothsTypeWomen);
       console.log(this.ClothsTypeMen);
-    });
-    this.store.dispatch(new LoadProductListAction(""));
+    });    
   }
 
   tabbutton(event,id){
-    let tablinks = this.el.nativeElement.querySelectorAll(".tablinks");
+    let selector = id.includes('women') ? '.women-clothing' : '.men-clothing'
+    let tablinks = this.el.nativeElement.querySelectorAll(selector+" .tablinks");
     for(let link of tablinks){
       link.classList.remove("active");
     }
     event.target.classList.add("active");
-    let tabcontents = this.el.nativeElement.querySelectorAll(".tabcontent");
-    for(let content of tabcontents){
-      content.classList.remove("active");
+    let tabcontents = this.el.nativeElement.querySelectorAll(selector+ " .tabcontent");
+    for(let content of tabcontents){      
+      content.classList.remove("active");      
     }
     this.el.nativeElement.querySelector("#"+id).classList.add('active');
   }
 
-  getBestsellerWomenCloth(){
+  getTabContent(tab:string, clothType:string){
     let data = [[]];
     let count = 0
-    for(let i of this.ClothsTypeWomen){
+    let items = clothType == "women" ? this.ClothsTypeWomen : this.ClothsTypeMen;
+    for(let i of items){
       for(let j of i){            
         if(data[count].length == 4){
           count++;
           data[count]=[]
         }
-        if(j.BestSeller){
-          data[count].push(j);
+        switch(tab) {
+          case "bestSeller":
+            if(j.BestSeller){
+              data[count].push(j);
+            }
+            break;
+          case "newItem":
+            let date = new Date(j.ItemAddedTime);
+            if( date > new Date(new Date().setMonth(new Date().getMonth() - 1))){
+              data[count].push(j);
+            }
+            break;
+          case "sale":
+            if(j.Sale){
+              data[count].push(j)
+            }
+            break;
         }
       }
     }
     return data;
   }
-  getBestsellerMenCloth(){
-    let data = [[]];
-    let count = 0
-    for(let i of this.ClothsTypeMen){
-      for(let j of i){            
-        if(data[count].length == 4){
-          count++;
-          data[count]=[]
-        }
-        if(j.BestSeller){
-          data[count].push(j);
-        }
-      }
-    }
-    return data;
-  }
+  
 }

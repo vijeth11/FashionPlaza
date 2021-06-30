@@ -1,5 +1,6 @@
+import { LoadClothListResolver } from './shared/resolvers/LoadClothList.resolver';
 import { reducer, metaReducers } from './store/reducers/AppState.reducer';
-import { FassionPlazaService } from './fassionplaza.service';
+import { FassionPlazaService } from './shared/services/fassionplaza.service';
 import { InfrastructureModule } from './../infrastructure/infrastructure.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -45,7 +46,7 @@ import { environment } from 'src/environments/environment';
     EffectsModule.forRoot([ProductListEffects, ProductEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
-  providers: [FassionPlazaService],
+  providers: [FassionPlazaService, LoadClothListResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

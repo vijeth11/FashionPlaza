@@ -1,8 +1,8 @@
-import { environment } from './../environments/environment';
-import { Product } from './store/model/product.model';
+import { environment } from '../../../environments/environment';
+import { Product } from '../../store/model/product.model';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ProductList } from "./store/model/product-list.model";
+import { ProductList } from "../../store/model/product-list.model";
 
 @Injectable({
     providedIn:'root'
@@ -14,10 +14,13 @@ export class FassionPlazaService{
 
     }
 
-    getProductListItems(clothType:string){        
+    getProductListItems(type:string, category:string){        
         let url = this.PRODUCT_URL+"products/"
-        if(clothType){
-            url = url+"?Type="+clothType;
+        if(type){
+            url = url+"?Type="+type;
+            if(category){
+                url = url+"&Subtype="+category;
+            }
         }
         return this.http.get<ProductList[]>(url);
     }

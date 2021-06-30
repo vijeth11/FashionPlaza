@@ -13,60 +13,44 @@
       <div class="wrapper women-clothing">
         <h2 >Woman Clothing</h2>
         <div class="tab">
-          <button class="tablinks active" (click)="tabbutton($event,'best-seller')">Best Seller</button>
-          <button class="tablinks" (click)="tabbutton($event,'new-items')">New Items</button>
-          <button class="tablinks" (click)="tabbutton($event,'sale')">Sale</button>  
+          <button class="tablinks active" (click)="tabbutton($event,'best-seller-women')">Best Seller</button>
+          <button class="tablinks" (click)="tabbutton($event,'new-items-women')">New Items</button>
+          <button class="tablinks" (click)="tabbutton($event,'sale-women')">Sale</button>  
         </div>
-        <div id="best-seller" class="tabcontent active">
-          <div class="row" *ngFor="let rowData of getBestsellerWomenCloth()">
+        <div id="best-seller-women" class="tabcontent active">
+          <div class="row" *ngFor="let rowData of getTabContent('bestSeller', 'women')">
             <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
               <app-card 
               [name]="data.Name"
               [company]="data.Company"
               [cost]="data.Cost"
-              [primaryImage]="data.PrimaryImage"></app-card>
-            </div>
-            <!--<div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>-->
-          </div>
-        </div>
-        <div id="new-items" class="tabcontent">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
             </div>
           </div>
         </div>
-        <div id="sale" class="tabcontent">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
+        <div id="new-items-women" class="tabcontent">
+          <div class="row" *ngFor="let rowData of getTabContent('newItem', 'women')">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
+            </div>            
+          </div>
+        </div>
+        <div id="sale-women" class="tabcontent">
+          <div class="row" *ngFor="let rowData of getTabContent('sale', 'women')">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
+            </div>            
           </div>
         </div>
       </div>
@@ -79,56 +63,44 @@
       <div class="wrapper men-clothing">
         <h2 >Man Clothing</h2>
         <div class="tab">
-          <button class="tablinks active" (click)="tabbutton($event,'best-seller')">Best Seller</button>
-          <button class="tablinks" (click)="tabbutton($event,'new-items')">New Items</button>
-          <button class="tablinks" (click)="tabbutton($event,'sale')">Sale</button>  
+          <button class="tablinks active" (click)="tabbutton($event,'best-seller-men')">Best Seller</button>
+          <button class="tablinks" (click)="tabbutton($event,'new-items-men')">New Items</button>
+          <button class="tablinks" (click)="tabbutton($event,'sale-men')">Sale</button>  
         </div>
-        <div id="best-seller" class="tabcontent active">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
+        <div id="best-seller-men" class="tabcontent active">
+          <div class="row" *ngFor="let rowData of getTabContent('bestSeller', 'men')">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
+            </div>            
+          </div>
+        </div>
+        <div id="new-items-men" class="tabcontent">
+          <div class="row"  *ngFor="let rowData of getTabContent('newItem', 'men')">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
             </div>
           </div>
         </div>
-        <div id="new-items" class="tabcontent">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-          </div>
-        </div>
-        <div id="sale" class="tabcontent">
-          <div class="row">
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
-            <div class="col-sm-3 col-md-3">
-              <app-card></app-card>
-            </div>
+        <div id="sale-men" class="tabcontent">
+          <div class="row" *ngFor="let rowData of getTabContent('sale', 'men')">
+            <div class="col-sm-3 col-md-3" *ngFor="let data of rowData">
+              <app-card
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"></app-card>
+            </div>            
           </div>
         </div>
       </div>

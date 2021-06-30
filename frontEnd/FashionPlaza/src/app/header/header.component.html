@@ -21,28 +21,28 @@
   </div>
   <div class="col-sm-12 col-md-12 header-menu">
     <div class="wrapper">
-      <h1>FASHION PLAZA</h1>
+      <h1><a [routerLink]="['/home']" >FASHION PLAZA</a></h1>
       <div class="nav-bar">
         <nav>
           <ul>
-            <li>Home</li>
+            <li><a [routerLink]="['/home']" >Home</a></li>
             <li>
               <div class="dropdown-btn">
-                <a class="women-btn">Women <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
+                <a class="women-btn" [routerLink]="['/products/women']">Women <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
                 <div class="women-category-dropdown-content">
-                  <a *ngFor="let item of category['women']">{{ item }}</a>
+                  <a [routerLink]="['/products/women',item.toLowerCase()]"  *ngFor="let item of category['women']">{{ item }}</a>
                 </div>
               </div>
             </li>
             <li>
               <div class="dropdown-btn-men">
-                <a class="men-btn">Men <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
+                <a class="men-btn" [routerLink]="['/products/men']">Men <span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
                 <div class="men-category-dropdown-content">
-                  <a *ngFor="let item of category['men']">{{ item }}</a>
+                  <a  [routerLink]="['/products/men',item.toLowerCase()]" *ngFor="let item of category['men']">{{ item }}</a>
                 </div>
               </div>
             </li>
-            <li>Accessories</li>
+            <li><a [routerLink]="['/products/accessories']" >Accessories</a></li>
           </ul>
         </nav>
       </div>

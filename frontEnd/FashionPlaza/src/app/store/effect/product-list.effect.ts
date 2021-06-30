@@ -5,14 +5,14 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { LoadProductListAction } from '../actions/product-list.action';
 import { mergeMap , map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { FassionPlazaService } from 'src/app/fassionplaza.service';
+import { FassionPlazaService } from 'src/app/shared/services/fassionplaza.service';
 
 @Injectable()
 export class ProductListEffects{
 
     @Effect() loadProductList$ = this.action$.pipe(
         ofType<LoadProductListAction>(ProductListActionType.LOAD_PRODUCT_LIST),
-        mergeMap((clothType) => this.productListService.getProductListItems(clothType.payload).
+        mergeMap((parameters) => this.productListService.getProductListItems(parameters.payload.type, parameters.payload.category).
             pipe(
                 map((data:any) => new LoadProductListSuccessAction(data)),
                 catchError(error => of(new LoadProductFailureAction(error)))
