@@ -35,3 +35,16 @@ https://pythonspeed.com/articles/docker-connection-refused/ -> regarding network
 https://docs.docker.com/engine/reference/commandline/run/
 
 https://docs.docker.com/compose/reference/build/
+
+https://devcenter.heroku.com/articles/django-assets -> overcome cors error when static file is accessed from frontend
+# Django Configure Environment based Database
+
+https://stackoverflow.com/questions/47579644/django-configuring-different-databases
+
+https://www.youtube.com/watch?v=610jg8bK0I8 -> how to add postgress to docker and connect existing django app to postgress
+
+https://vsupalov.com/docker-build-time-env-values/ -> how to set environment variables in docker image 
+
+https://stackoverflow.com/questions/39597925/how-do-i-set-environment-variables-during-the-build-in-docker
+
+https://docs.docker.com/compose/environment-variables/

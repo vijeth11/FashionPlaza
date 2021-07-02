@@ -5,3 +5,4 @@ whitenoise
 Pillow
 django-filter
 django-cors-headers
+psycopg2

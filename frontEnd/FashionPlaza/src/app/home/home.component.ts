@@ -4,7 +4,6 @@ import { environment } from './../../environments/environment';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/model/app-state.models';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +29,7 @@ export class HomeComponent implements OnInit {
   ];
   ClothsTypeWomen:ProductList[][]=[[]];
   ClothsTypeMen:ProductList[][]=[[]];
-  constructor(private el:ElementRef,private store:Store<AppState>,private activatedRoute: ActivatedRoute) { 
+  constructor(private el:ElementRef,private store:Store<AppState>) { 
 
   }
 
@@ -53,8 +52,6 @@ export class HomeComponent implements OnInit {
           this.ClothsTypeMen[countm].push(i);
         }
       }
-      console.log(this.ClothsTypeWomen);
-      console.log(this.ClothsTypeMen);
     });    
   }
 

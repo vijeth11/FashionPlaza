@@ -9,7 +9,7 @@ export enum ProductListActionType{
 
 export class LoadProductListAction implements Action{
     readonly type = ProductListActionType.LOAD_PRODUCT_LIST
-    constructor(public payload:string){}
+    constructor(public payload:{type:string, category:string}){}
 }
 
 export class LoadProductListSuccessAction implements Action{
