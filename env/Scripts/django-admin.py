@@ -1,4 +1,4 @@
-#!e:\documents\udemy\udemydjangorestframeworkbymark\e-commerce cloth website\env\scripts\python.exe
+#!c:\users\vijeth a belle\documents\my web projects\fashionplaza\env\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
