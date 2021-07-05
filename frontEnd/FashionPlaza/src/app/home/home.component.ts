@@ -1,5 +1,5 @@
 import { ProductList } from './../store/model/product-list.model';
-import { selectProductListItems } from './../store/selectors/product-list.selector';
+import { selectProductListItems, selectProductListLoading } from './../store/selectors/product-list.selector';
 import { environment } from './../../environments/environment';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { select, Store } from '@ngrx/store';
@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
         }
       }
     });    
+
+    this.store.pipe(select(selectProductListLoading)).subscribe(data => {
+      alert(data);
+    });
   }
 
   tabbutton(event,id){
