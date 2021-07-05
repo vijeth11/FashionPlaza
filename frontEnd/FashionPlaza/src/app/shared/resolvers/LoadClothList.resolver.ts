@@ -1,4 +1,3 @@
-import { LoadProductListAction } from './../../store/actions/product-list.action';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import { Store } from '@ngrx/store';

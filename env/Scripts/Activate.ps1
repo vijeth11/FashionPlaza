@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="E:\Documents\Udemy\UdemyDjangoRestFrameworkByMark\E-commerce Cloth website\env"
+$env:VIRTUAL_ENV="C:\Users\VIJETH A BELLE\Documents\My Web projects\FashionPlaza\env"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name

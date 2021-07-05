@@ -22,4 +22,10 @@ class ProductImageSerializer(serializers.ModelSerializer):
         model = ProductImage
         fields = '__all__'
 
+class ProductCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ['Type','Subtype']
+
 

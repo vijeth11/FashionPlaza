@@ -28,4 +28,8 @@ export class FassionPlazaService{
     getProductDetails(productId){
         return this.http.get<Product>(this.PRODUCT_URL+"product/"+productId+"/");
     }
+
+    getProductCategoryList(){
+        return this.http.get<{Type:string,Subtype:string}[]>(this.PRODUCT_URL+"product-category/");
+    }
 }

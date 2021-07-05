@@ -23,6 +23,7 @@ import { ProductListEffects } from './store/effect/product-list.effect';
 import { ProductEffects } from './store/effect/product.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { ProductCategoryListEffects } from './store/effect/product-category-list.effect';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { environment } from 'src/environments/environment';
     InfrastructureModule,
     HttpClientModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([ProductListEffects, ProductEffects]),
+    EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
   providers: [FassionPlazaService, LoadClothListResolver],
