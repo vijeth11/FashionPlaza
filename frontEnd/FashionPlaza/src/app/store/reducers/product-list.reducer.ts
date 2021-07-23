@@ -4,7 +4,7 @@ import { ProductListState } from "../entity/product-list-entity";
 
 const initialState:ProductListState = productListAdapter.getInitialState({
     loading:false,
-    error:undefined
+    error:undefined,
 })
 
 export function ProductListReducer(state:ProductListState = initialState, action:ProductListAction ){
@@ -12,10 +12,11 @@ export function ProductListReducer(state:ProductListState = initialState, action
         case ProductListActionType.LOAD_PRODUCT_LIST:
             return {
                 ...state,
-                loading:true
+                loading:true,
             };
+            
         case ProductListActionType.LOAD_PRODUCT_LIST_SUCCESS:
-            return productListAdapter.addMany(action.payload,{
+            return productListAdapter.setAll(action.payload,{
                 ...state,
                 loading: false
             });

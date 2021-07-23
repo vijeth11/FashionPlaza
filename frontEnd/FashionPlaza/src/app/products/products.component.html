@@ -3,54 +3,43 @@
     <div class="wrapper">
       <div class="navigator">
         <p>
-          <span><a>Home</a></span> > <span><a>Woman jumpsuits</a></span>
+          <span><a>Home</a></span>
+          <span *ngIf="selectedType"> > </span><span *ngIf="selectedType"><a>{{selectedType[0].toUpperCase()+selectedType.slice(1,selectedType.length).toLowerCase()}}</a></span>
+          <span *ngIf="selectedSubType"> > </span><span *ngIf="selectedSubType"><a>{{selectedSubType[0].toUpperCase()+selectedSubType.slice(1,selectedSubType.length).toLowerCase()}}</a></span>
         </p>
       </div>
       <div class="header row">
         <div class="col-sm-6 col-md-6">
-          <h1>Woman Jumpsuits</h1>
+          <h1>{{selectedType[0].toUpperCase()+selectedType.slice(1,selectedType.length).toLowerCase()}} {{selectedSubType ? selectedSubType[0].toUpperCase()+selectedSubType.slice(1,selectedSubType.length).toLowerCase():""}}</h1>
         </div>
         <div class="col-sm-6 col-md-6 browse-options">
           <span>Browse by</span>
-          <select style="margin-right: 1vw;">
-            <option>Jumppers</option>
-            <option>shirts</option>
+          <select style="margin-right: 1vw;" (change)="categorySelected($event)" value="selectedSubtype ? selectedSubtype : ''">
+            <option *ngFor="let item of categoryList">{{item}}</option>
           </select>
           <span>Sort by</span>
-          <select>
-            <option>cost</option>
-            <option>Best Selling</option>
+          <select (change)="sortChanged($event)">
+            <option *ngFor="let item of sortList">{{item}}</option>
           </select>
         </div>
       </div>
       <div class="products">
-        <div class="row">
-          <div class="col-sm-2 col-md-2">
-            <app-card></app-card>
-          </div>
-          <div class="col-sm-2 col-md-2">
-            <app-card></app-card>
-          </div>
-          <div class="col-sm-2 col-md-2">
-            <app-card></app-card>
-          </div>
-          <div class="col-sm-2 col-md-2">
+        <div class="row" *ngFor="let cloths of clothDetails">
+          <div class="col-sm-2 col-md-2" *ngFor="let data of cloths">
             <app-card
-            [displaySales]="true"></app-card>
-          </div>
-          <div class="col-sm-2 col-md-2">
-            <app-card></app-card>
-          </div>
-          <div class="col-sm-2 col-md-2">
-            <app-card></app-card>
-          </div>
+              [name]="data.Name"
+              [company]="data.Company"
+              [cost]="data.Cost"
+              [primaryImage]="data.PrimaryImage"
+              [displaySales]="data.Sale"
+              (click)="loadProduct(data.Id)"></app-card>
+          </div>         
         </div>
       </div>
-      <div class="pagination">
-        <span class="active"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></span>
-        <span class="active">1</span>
-        <span>2</span>
-        <span><i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+      <div class="pagination" *ngIf="clothDetails.length % itemsPerPage> 1">
+        <span class="active"><i class="fa fa-long-arrow-left" aria-hidden="true" (click)="changePageNumber(currentPageNumber + 1)"></i></span>
+        <span *ngFor="let i of Range()" [class.active] = "currentPageNumber == i">{{i}}</span>
+        <span><i class="fa fa-long-arrow-right" aria-hidden="true" (click)="changePageNumber(currentPageNumber - 1)"></i></span>
       </div>
     </div>
   </div>

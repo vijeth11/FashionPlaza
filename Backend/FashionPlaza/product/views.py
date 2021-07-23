@@ -30,9 +30,9 @@ class ProductListView(mixins.ListModelMixin,viewsets.GenericViewSet):
         subtype = self.request.query_params.get('Subtype')
         if  type is not None:
             if  subtype is not None:
-                return self.queryset.filter(Type=type, Subtype=subtype)
+                return self.queryset.filter(Type__iexact=type, Subtype__iexact=subtype)
             else:
-                return self.queryset.filter(Type=type)
+                return self.queryset.filter(Type__iexact=type)
         else:
             return self.queryset.filter(OR(BestSeller=True) | OR(Sale=True) | OR(ItemAddedTime = datetime.now() - timedelta(days=30)))
 

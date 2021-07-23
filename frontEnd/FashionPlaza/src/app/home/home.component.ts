@@ -1,7 +1,7 @@
 import { ProductList } from './../store/model/product-list.model';
 import { selectProductListItems, selectProductListLoading } from './../store/selectors/product-list.selector';
 import { environment } from './../../environments/environment';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/model/app-state.models';
 
@@ -10,7 +10,7 @@ import { AppState } from '../store/model/app-state.models';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   storeImage:string = environment.imageUrl + "store.jpg";
   homeProductImage:string = environment.imageUrl + "home-product.jpg";
@@ -29,13 +29,18 @@ export class HomeComponent implements OnInit {
   ];
   ClothsTypeWomen:ProductList[][]=[[]];
   ClothsTypeMen:ProductList[][]=[[]];
+  private getClothDetails$:any;
+  private isLoadingSubscriber$:any;
   constructor(private el:ElementRef,private store:Store<AppState>) { 
 
   }
+  
 
   ngOnInit() {
-    this.store.pipe(select(selectProductListItems)).subscribe(data => {
+    this.getClothDetails$ =  this.store.pipe(select(selectProductListItems)).subscribe(data => {
       let countw = 0, countm =0;
+      this.ClothsTypeWomen = [[]];
+      this.ClothsTypeMen = [[]];
       for(let i of data)
       {
         if(i.Type.toLowerCase() == "women"){
@@ -54,8 +59,8 @@ export class HomeComponent implements OnInit {
       }
     });    
 
-    this.store.pipe(select(selectProductListLoading)).subscribe(data => {
-      alert(data);
+    this.isLoadingSubscriber$ = this.store.pipe(select(selectProductListLoading)).subscribe(data => {
+      console.log("is loading "+data.toString());
     });
   }
 
@@ -104,6 +109,15 @@ export class HomeComponent implements OnInit {
       }
     }
     return data;
+  }
+
+  ngOnDestroy(): void {
+    if(this.getClothDetails$){
+      this.getClothDetails$.unsubscribe();
+    }
+    if(this.isLoadingSubscriber$){
+      this.isLoadingSubscriber$.unsubscribe();
+    }
   }
   
 }

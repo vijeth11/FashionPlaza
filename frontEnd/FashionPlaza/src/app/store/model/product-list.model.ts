@@ -10,4 +10,5 @@ export interface ProductList{
     ItemAddedTime:string;
     Type:string;
     Subtype:string;
+    TotalRecords:number;
 }

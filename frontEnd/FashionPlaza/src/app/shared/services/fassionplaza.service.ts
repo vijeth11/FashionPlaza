@@ -9,15 +9,16 @@ import { ProductList } from "../../store/model/product-list.model";
 })
 export class FassionPlazaService{
     private PRODUCT_URL = environment.production?"/api/":"http://localhost:8000/api/";
+    private listCountPerPage:number = 18;
 
     constructor(private http: HttpClient){
 
     }
 
-    getProductListItems(type:string, category:string){        
+    getProductListItems(type:string, category:string, pageNumber: Number){        
         let url = this.PRODUCT_URL+"products/"
         if(type){
-            url = url+"?Type="+type;
+            url = url+"?ListCount="+this.listCountPerPage+"&PageNumber="+pageNumber+"&Type="+type;
             if(category){
                 url = url+"&Subtype="+category;
             }
@@ -31,5 +32,9 @@ export class FassionPlazaService{
 
     getProductCategoryList(){
         return this.http.get<{Type:string,Subtype:string}[]>(this.PRODUCT_URL+"product-category/");
+    }
+
+    getListCountPerPage():number{
+        return this.listCountPerPage;
     }
 }

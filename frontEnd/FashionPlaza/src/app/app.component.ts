@@ -11,13 +11,13 @@ import { AppState } from './store/model/app-state.models';
 })
 export class AppComponent implements OnInit{
   title = 'FashionPlaza';
-  $productCategories;
+  productCategories$;
   constructor(private store:Store<AppState>){
 
   }
 
   ngOnInit(){
-    this.$productCategories = this.store.pipe(select(selectProductCategories));
+    this.productCategories$ = this.store.pipe(select(selectProductCategories));
 
     this.store.dispatch(new LoadProductCategoryListAction());
   }

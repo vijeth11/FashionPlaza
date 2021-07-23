@@ -12,7 +12,7 @@ export class ProductListEffects{
 
     @Effect() loadProductList$ = this.action$.pipe(
         ofType<LoadProductListAction>(ProductListActionType.LOAD_PRODUCT_LIST),
-        mergeMap((parameters) => this.productListService.getProductListItems(parameters.payload.type, parameters.payload.category).
+        mergeMap((parameters) => this.productListService.getProductListItems(parameters.payload.type, parameters.payload.category, parameters.payload.pageNumber).
             pipe(
                 map((data:any) => new LoadProductListSuccessAction(data)),
                 catchError(error => of(new LoadProductFailureAction(error)))
