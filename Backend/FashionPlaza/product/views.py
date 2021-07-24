@@ -9,6 +9,7 @@ from .permissions import AdminUserCanOnlyUpdate
 from .models import Product, ProductImage
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q as OR
+from django.db.models import Count
 from datetime import datetime, timedelta
 # Create your views here.
 
@@ -35,6 +36,19 @@ class ProductListView(mixins.ListModelMixin,viewsets.GenericViewSet):
                 return self.queryset.filter(Type__iexact=type)
         else:
             return self.queryset.filter(OR(BestSeller=True) | OR(Sale=True) | OR(ItemAddedTime = datetime.now() - timedelta(days=30)))
+
+    def list(self, request):
+        pagesPerList = int(request.query_params.get('ListCount'))
+        page = int(request.query_params.get('PageNumber')) - 1 
+        result = []
+        data = self.serializer_class(self.get_queryset(),many = True).data
+        for value in data:            
+            value["TotalRecords"] = len(data)           
+            result.append(value)
+        if len(data) - (page*pagesPerList) > pagesPerList:
+            return Response(result[page*pagesPerList:(page+1)*pagesPerList])
+        else:
+            return Response(result[page*pagesPerList:])
 
 class ProductImageView(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)

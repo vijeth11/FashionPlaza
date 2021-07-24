@@ -14,9 +14,13 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1    
 class ProductListSerializer(serializers.ModelSerializer):
+    TotalRecords = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        fields = ['id','Name','Cost','Company','Discount','Sale','PrimaryImage','BestSeller','ItemAddedTime','Type','Subtype']
+        fields = ['id','Name','Cost','Company','Discount','Sale','PrimaryImage','BestSeller','ItemAddedTime','Type','Subtype','TotalRecords']
+
+    def get_TotalRecords(self, obj):
+        return 0
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage

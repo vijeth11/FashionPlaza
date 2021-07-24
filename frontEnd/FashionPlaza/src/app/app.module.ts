@@ -4,7 +4,7 @@ import { FassionPlazaService } from './shared/services/fassionplaza.service';
 import { InfrastructureModule } from './../infrastructure/infrastructure.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,6 +25,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { ProductCategoryListEffects } from './store/effect/product-category-list.effect';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { ProductCategoryListEffects } from './store/effect/product-category-list
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     InfrastructureModule,
     HttpClientModule,

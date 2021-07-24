@@ -56,8 +56,9 @@ select {
     margin-left: 0.5vw;
     margin-right: 0.5vw;
     color: #f84711;
+    cursor: pointer;
 }
 
 .pagination .active {
-    color: black;
+    color: black;    
 }

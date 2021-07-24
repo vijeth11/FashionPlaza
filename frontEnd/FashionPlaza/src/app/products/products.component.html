@@ -14,11 +14,11 @@
         </div>
         <div class="col-sm-6 col-md-6 browse-options">
           <span>Browse by</span>
-          <select style="margin-right: 1vw;" (change)="categorySelected($event)" value="selectedSubtype ? selectedSubtype : ''">
-            <option *ngFor="let item of categoryList">{{item}}</option>
+          <select style="margin-right: 1vw;" (change)="categorySelected($event)" [(ngModel)]="selectedSubType">
+            <option *ngFor="let item of categoryList" [selected]="selectedSubType == item">{{item}}</option>
           </select>
           <span>Sort by</span>
-          <select (change)="sortChanged($event)">
+          <select (change)="sortChanged($event)" [(ngModel)]="sortValue">
             <option *ngFor="let item of sortList">{{item}}</option>
           </select>
         </div>
@@ -36,10 +36,10 @@
           </div>         
         </div>
       </div>
-      <div class="pagination" *ngIf="clothDetails.length % itemsPerPage> 1">
-        <span class="active"><i class="fa fa-long-arrow-left" aria-hidden="true" (click)="changePageNumber(currentPageNumber + 1)"></i></span>
-        <span *ngFor="let i of Range()" [class.active] = "currentPageNumber == i">{{i}}</span>
-        <span><i class="fa fa-long-arrow-right" aria-hidden="true" (click)="changePageNumber(currentPageNumber - 1)"></i></span>
+      <div class="pagination" *ngIf="totalPages > 1">
+        <span class="active"><i class="fa fa-long-arrow-left" aria-hidden="true" (click)="changePageNumber(currentPageNumber - 1)"></i></span>
+        <span *ngFor="let i of pagesRange(totalPages,1)" [class.active] = "currentPageNumber == i" (click)="changePageNumber(i)">{{i}}</span>
+        <span><i class="fa fa-long-arrow-right" aria-hidden="true" (click)="changePageNumber(currentPageNumber + 1)"></i></span>
       </div>
     </div>
   </div>

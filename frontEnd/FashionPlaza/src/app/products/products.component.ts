@@ -25,6 +25,8 @@ export class ProductsComponent implements OnInit, OnDestroy{
   itemsPerPage:number = 0;
   currentPageNumber:number = 1;
   totalPages:number = 0;
+  pagesRange = Range;
+  sortValue = this.sortList[0];
   private filteredProductsSubscribe$:any;
   private productsSubscribe$:any;
   private sortedDataSubscriber$:any;
@@ -34,13 +36,15 @@ export class ProductsComponent implements OnInit, OnDestroy{
     this.itemsPerPage = this.fassionService.getListCountPerPage();    
     this.activatedRoute.params.subscribe(data => {       
 
-      if(this.selectedType != data["type"]){
+      if(this.selectedType != data["type"] || this.selectedSubType != data["category"]){
         this.selectedType = data["type"];        
+        this.selectedSubType =  data["category"] && data["category"].length > 0 ? data["category"][0].toUpperCase()+data["category"].slice(1,data["category"].length): data["category"];
         this.store.dispatch(new LoadProductListAction({type:this.selectedType,category:this.selectedSubType,pageNumber:this.currentPageNumber}));    
       }
       
       this.store.pipe(select(selectProductCategories)).subscribe(data => {
         this.categoryList = ["Select"];
+        this.sortValue = this.sortList[0];
         for(let item of data){
           if(item.Type.toLowerCase() === this.selectedType.toLowerCase()){
             this.categoryList.push(item.Subtype[0].toUpperCase()+item.Subtype.slice(1,item.Subtype.length))
@@ -48,7 +52,11 @@ export class ProductsComponent implements OnInit, OnDestroy{
         }
       });  
 
-      if(data["category"]){
+      this.productsSubscribe$ = this.store.pipe(select(selectProductListItems)).subscribe(result => {
+        this.loadClothDetails(result);
+      });
+
+      /*if(data["category"]){
         this.selectedSubType = data["category"];
         this.filteredProductsSubscribe$ = this.store.select(selectFilteredProductListItems,data["category"]).subscribe( result => {
           this.loadClothDetails(result);
@@ -58,7 +66,7 @@ export class ProductsComponent implements OnInit, OnDestroy{
         this.productsSubscribe$ = this.store.pipe(select(selectProductListItems)).subscribe(result => {
           this.loadClothDetails(result);
         })
-      }    
+      } */
       
     });
    } 
@@ -70,9 +78,9 @@ export class ProductsComponent implements OnInit, OnDestroy{
   loadClothDetails(data:ProductList[]){
     this.clothDetails = [[]];
     let countw = 0;
-    this.totalRecords = data[0].TotalRecords;
+    this.totalRecords = data.length > 0 ? data[0].TotalRecords : 0;
     this.totalPages = Math.trunc(this.totalRecords/this.itemsPerPage);
-    if(this.totalRecords % this.itemsPerPage == 0 ){
+    if(this.totalRecords % this.itemsPerPage > 0 ){
       this.totalPages += 1;
     }
     
@@ -143,8 +151,13 @@ export class ProductsComponent implements OnInit, OnDestroy{
   }
 
   changePageNumber(pageNumber:number){   
-    this.currentPageNumber = pageNumber > this.totalPages ? 1 : pageNumber;
+    this.currentPageNumber = pageNumber > this.totalPages ? 1 : pageNumber < 1 ? this.totalPages : pageNumber;
     this.store.dispatch(new LoadProductListAction({type:this.selectedType,category:this.selectedSubType,pageNumber:this.currentPageNumber}));
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+   });
   }
 
   ngOnDestroy(): void {

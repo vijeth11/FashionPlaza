@@ -3,6 +3,7 @@ import { Product } from '../../store/model/product.model';
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductList } from "../../store/model/product-list.model";
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn:'root'
@@ -19,11 +20,15 @@ export class FassionPlazaService{
         let url = this.PRODUCT_URL+"products/"
         if(type){
             url = url+"?ListCount="+this.listCountPerPage+"&PageNumber="+pageNumber+"&Type="+type;
-            if(category){
+            if(category && category.toLowerCase()!="select"){
                 url = url+"&Subtype="+category;
             }
         }
-        return this.http.get<ProductList[]>(url);
+        return this.http.get<ProductList[]>(url).pipe(map((data:ProductList[]) => {
+            for(let i in data)
+            data[i].PrimaryImage = (environment.production && data[i].PrimaryImage.indexOf("http") > -1?"":"http://localhost:8000") + data[i].PrimaryImage;
+            return data
+        }));
     }
 
     getProductDetails(productId){
