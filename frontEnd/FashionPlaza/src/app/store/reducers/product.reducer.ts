@@ -16,11 +16,11 @@ export function ProductReducer(state:ProductState = initState,action:ProductActi
                 loading:true
             };
         case ProductActionTypes.LOAD_PRODUCT_SUCCESS:
-            return {
+            productAdapter.removeAll(state);
+            return productAdapter.setOne(action.payload,{
                 ...state,
-                ...action.payload,
-                loading:false
-            };
+                loading:false    
+            });            
         case ProductActionTypes.LOAD_PRODUCT_FAILURE:
             return {
                 ...state,

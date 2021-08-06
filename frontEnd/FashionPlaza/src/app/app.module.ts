@@ -49,7 +49,7 @@ import { ProductCategoryListEffects } from './store/effect/product-category-list
     EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
-  providers: [FassionPlazaService, LoadClothListResolver],
+  providers: [LoadClothListResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

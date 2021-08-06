@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 
 class ProductView(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated, AdminUserCanOnlyUpdate,)
+    permission_classes = (AdminUserCanOnlyUpdate,)
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 

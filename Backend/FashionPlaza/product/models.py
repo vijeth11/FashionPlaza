@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.db import models
 from django.conf import settings
+from django.core.validators import RegexValidator
 import os
 # Create your models here.
 
@@ -24,6 +25,7 @@ class Product(models.Model):
     PrimaryImage = models.ImageField(upload_to = fileRename)
     BestSeller = models.BooleanField(default=True)
     ItemAddedTime = models.DateTimeField(default=timezone.now)
+    Size = models.CharField(max_length=200,validators = [RegexValidator(regex='[^0-9,]',message='Size takes only numbers coma seperated',code='invalid_size',inverse_match=True)], default='')
     def __str__(self):
         return self.Name
 

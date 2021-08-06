@@ -1,0 +1,106 @@
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.col-sm-12, .col-md-12,
+.col-sm-6, .col-md-6, 
+.col-sm-2, .col-md-2{
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.wrapper{
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.navigator{
+    margin-top:5vh;
+}
+
+.detail-row{
+    margin-top: 1rem;
+    margin-right: 2vw;
+}
+
+.detail-row img{
+    width: 100%;
+}
+
+.header-company-name, .header-product-name, .price{
+    font-family: 'Libre Baskerville';
+}
+
+.display-image{
+    margin-right: 2vw;
+}
+.product-detail{
+    margin-top: 2vh;
+}
+
+.price{
+    font-weight: 500;
+    color: red;
+    font-size: 25px;
+}
+
+.product-detail div{
+    margin-top: 2vh;
+}
+
+.product-detail div p {
+    font-weight: 300;
+    margin-bottom: 4px;
+}
+
+.product-detail div input{
+    text-align: left;
+    border: 1px solid lightgrey;
+    line-height: 35px;
+}
+
+.product-detail div select{
+    padding: 6px;
+    width: 3.5vw;
+    border: 1px solid lightgrey;
+}
+
+.product-detail div input::-webkit-outer-spin-button, 
+.product-detail div input::-webkit-inner-spin-button {
+     margin-left: 5px; 
+}
+
+.purchase-buttons{
+    margin-top: 4vh;
+    display: flex;
+    flex-flow: column;
+}
+
+.purchase-buttons button{
+    width: 40%;
+}
+
+.purchase-buttons button{
+    padding: 10px;
+    border: 1px solid red;    
+    font-family: 'Libre Baskerville';
+    font-size: 15px;
+    font-weight: 100;
+    opacity:0.7;
+}
+
+.purchase-buttons .add-to-cart{  
+    color: red;    
+    background-color: white;
+    margin-bottom: 1vh;   
+}
+
+.purchase-buttons .buy-it-now{   
+    color: white;
+    background-color: red;
+}
+
+.purchase-buttons .add-to-cart:hover,.purchase-buttons .buy-it-now:hover{
+    opacity: 0.4;
+}

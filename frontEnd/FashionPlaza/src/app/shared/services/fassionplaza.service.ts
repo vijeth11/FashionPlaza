@@ -31,7 +31,7 @@ export class FassionPlazaService{
         }));
     }
 
-    getProductDetails(productId){
+    getProductDetails(productId:number){
         return this.http.get<Product>(this.PRODUCT_URL+"product/"+productId+"/");
     }
 

@@ -6,15 +6,20 @@ export const selectProduct = createFeatureSelector<AppState,ProductState>('produ
 
 export const selectProductLoading = createSelector(
     selectProduct,
-    (product) => product.loading
+    (product:ProductState) => product.loading
 )
 
 export const selectProductError = createSelector(
     selectProduct,
-    (product) => product.error
+    (product:ProductState) => product.error
+)
+
+const selectProductItems = createSelector(
+    selectProduct,
+    productAdapter.getSelectors().selectAll
 )
 
 export const selectProductItem = createSelector(
-    selectProduct,
-    productAdapter.getSelectors().selectEntities[0]
+    selectProductItems,
+    (products) => products[0]    
 )

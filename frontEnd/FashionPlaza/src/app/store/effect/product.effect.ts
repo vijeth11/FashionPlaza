@@ -8,11 +8,14 @@ import { of } from 'rxjs';
 @Injectable()
 export class ProductEffects{
 
-    @Effect() loadProductList$ = this.action$.pipe(
+    @Effect() loadProduct$ = this.action$.pipe(
         ofType<LoadProductAction>(ProductActionTypes.LOAD_PRODUCT),
-        mergeMap((ProductId) => this.productListService.getProductDetails(ProductId).
+        mergeMap((parameters) => this.productListService.getProductDetails(parameters.payload).
             pipe(
-                map((data:any) => new LoadProductSuccessAction(data)),
+                map((data:any) => {
+                    let {Size, ...finalData}:any = {...data, sizes:data.Size.split(",").map(x => Number(x))};
+                    return new LoadProductSuccessAction(finalData);
+                }),
                 catchError(error => of(new LoadProductFailureAction(error)))
             )
         )
