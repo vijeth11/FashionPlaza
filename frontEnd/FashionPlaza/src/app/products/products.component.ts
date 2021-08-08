@@ -54,20 +54,8 @@ export class ProductsComponent implements OnInit, OnDestroy{
 
       this.productsSubscribe$ = this.store.pipe(select(selectProductListItems)).subscribe(result => {
         this.loadClothDetails(result);
-      });
-
-      /*if(data["category"]){
-        this.selectedSubType = data["category"];
-        this.filteredProductsSubscribe$ = this.store.select(selectFilteredProductListItems,data["category"]).subscribe( result => {
-          this.loadClothDetails(result);
-        }); 
-      }else{
-        this.selectedSubType = "";
-        this.productsSubscribe$ = this.store.pipe(select(selectProductListItems)).subscribe(result => {
-          this.loadClothDetails(result);
-        })
-      } */
-      
+      });  
+           
     });
    } 
 
