@@ -12,7 +12,7 @@ export interface Product{
     PrimaryImage:string;
     BestSeller:boolean;
     ItemAddedTime:string;
-    sizes:number[];
+    sizes:string[];
 }
 
 export interface ProductImages{

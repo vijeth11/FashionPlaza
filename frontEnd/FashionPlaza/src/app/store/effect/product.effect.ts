@@ -13,7 +13,7 @@ export class ProductEffects{
         mergeMap((parameters) => this.productListService.getProductDetails(parameters.payload).
             pipe(
                 map((data:any) => {
-                    let {Size, ...finalData}:any = {...data, sizes:data.Size.split(",").map(x => Number(x))};
+                    let {Size, ...finalData}:any = {...data, sizes:data.Size.split(",")};
                     return new LoadProductSuccessAction(finalData);
                 }),
                 catchError(error => of(new LoadProductFailureAction(error)))

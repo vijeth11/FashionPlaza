@@ -32,7 +32,12 @@ export class FassionPlazaService{
     }
 
     getProductDetails(productId:number){
-        return this.http.get<Product>(this.PRODUCT_URL+"product/"+productId+"/");
+        return this.http.get<Product>(this.PRODUCT_URL+"product/"+productId+"/").pipe(map(response => {
+            response.images.forEach(x => {
+                x.image = (environment.production ? '' : "http://localhost:8000") +x.image;
+            })
+            return response;
+        }));
     }
 
     getProductCategoryList(){

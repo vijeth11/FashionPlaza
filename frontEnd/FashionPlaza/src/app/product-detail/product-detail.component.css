@@ -104,3 +104,52 @@
 .purchase-buttons .add-to-cart:hover,.purchase-buttons .buy-it-now:hover{
     opacity: 0.4;
 }
+
+.information{    
+    margin-top: 10vh;
+}
+
+.information-header{
+    display: flex;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;    
+    font-size: 25px;
+    font-family: 'Libre Baskerville';
+    color:lightgray;
+    font-weight:100;
+}
+
+.information-header .description-header{
+    border-right: 1px solid gray;
+    padding: 19px 20px;
+}
+
+.information-header .info-header{
+    padding: 19px 20px;
+}
+
+.information .active{
+    font-weight:700;
+    color: black;
+}
+
+.information .description, .information .more-info{
+    margin-top: 5vh;
+    font-family: 'Libre Baskerville';
+}
+
+.more-info h4{
+    font-size:13px;
+    font-weight: bolder;
+}
+
+.more-info p{
+    margin-top: 2vh;
+    font-size: 13px;
+}
+
+.alt-img{
+    margin-top:2vh;
+    margin-bottom:2vh;
+    margin-right: 2vw;
+}
