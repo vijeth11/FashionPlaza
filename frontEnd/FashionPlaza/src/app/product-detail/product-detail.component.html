@@ -40,11 +40,11 @@
             </div>
             <div>
               <p>Quantity</p>
-              <input type="number">
+              <input type="number" [(ngModel)]="quantity">
             </div>
           </div>
           <div class="purchase-buttons">
-            <button class="add-to-cart">ADD TO CART</button>
+            <button class="add-to-cart" (click)="addItemToCart()">ADD TO CART</button>
             <button class="buy-it-now">BUY IT NOW</button>
           </div>
           <div class="information">
@@ -95,15 +95,17 @@
       <div>
         <h4>More from this collection</h4>
         <div class="row">
-          <div class="col-sm-3 col-md-3" *ngFor="let product of similiarCollection">
-            <app-card
-              [name]="product.Name"
-              [company]="product.Company"
-              [cost]="product.Cost"
-              [primaryImage]="product.PrimaryImage"
-              [displaySales]="product.Sale"
-              (click)="loadProduct(product.id)"></app-card>
-          </div>          
+          <ng-container *ngFor="let item of productListSubscriber$ | async">
+            <div class="col-sm-3 col-md-3" *ngIf="item.id != product.id">
+              <app-card
+                [name]="item.Name"
+                [company]="item.Company"
+                [cost]="item.Cost"
+                [primaryImage]="item.PrimaryImage"
+                [displaySales]="item.Sale"
+                (click)="loadProduct(item.id)"></app-card>
+            </div>
+          </ng-container>          
         </div>
       </div>
     </div>

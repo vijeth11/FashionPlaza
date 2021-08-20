@@ -1,6 +1,6 @@
+import { OnlyLoggedInUserGuard } from './shared/gaurds/only-logged-in-user.guard';
 import { LoadClothListResolver } from './shared/resolvers/LoadClothList.resolver';
-import { reducer, metaReducers } from './store/reducers/AppState.reducer';
-import { FassionPlazaService } from './shared/services/fassionplaza.service';
+import { reducer } from './store/reducers/AppState.reducer';
 import { InfrastructureModule } from './../infrastructure/infrastructure.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,6 +24,8 @@ import { ProductEffects } from './store/effect/product.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { ProductCategoryListEffects } from './store/effect/product-category-list.effect';
+import { AuthenticationComponent } from './Authentication/authentication.component';
+import { AuthenticationService } from './shared/services/Authentication.service';
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { ProductCategoryListEffects } from './store/effect/product-category-list
     CartComponent,
     CheckoutComponent,
     ProductDetailComponent,
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,11 @@ import { ProductCategoryListEffects } from './store/effect/product-category-list
     EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
-  providers: [LoadClothListResolver],
+  providers: [
+    LoadClothListResolver,
+    AuthenticationService,
+    OnlyLoggedInUserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

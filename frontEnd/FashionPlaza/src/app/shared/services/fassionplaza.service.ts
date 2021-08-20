@@ -4,6 +4,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductList } from "../../store/model/product-list.model";
 import { map } from 'rxjs/operators';
+import { Cart } from 'src/app/store/model/cart.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn:'root'
@@ -12,10 +14,10 @@ export class FassionPlazaService{
     private PRODUCT_URL = environment.production?"/api/":"http://localhost:8000/api/";
     private listCountPerPage:number = 18;
 
+    public cartItemAddedInProductDetail = new BehaviorSubject<Cart>(null);
     constructor(private http: HttpClient){
-
     }
-
+    
     getProductListItems(type:string, category:string, pageNumber: Number){        
         let url = this.PRODUCT_URL+"products/"
         if(type){

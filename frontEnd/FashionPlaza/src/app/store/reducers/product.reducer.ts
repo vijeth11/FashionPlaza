@@ -17,7 +17,7 @@ export function ProductReducer(state:ProductState = initState,action:ProductActi
             };
         case ProductActionTypes.LOAD_PRODUCT_SUCCESS:
             productAdapter.removeAll(state);
-            return productAdapter.setOne(action.payload,{
+            return productAdapter.setAll([action.payload],{
                 ...state,
                 loading:false    
             });            
