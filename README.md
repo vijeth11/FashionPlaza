@@ -46,6 +46,12 @@ Docker Compose relies on the files present in the local file to run container ev
 Docker file upon building creates a new copy of files in its storage and all read and write will happen to the docker storage but it will not update the local files 
 
 Containers run using docker compose depends on local file to start initially but will not read or write to it
+
+### Python: Can dumpdata cannot loaddata back. UnicodeDecodeError
+- Open the file in regular notepad
+- Select save as
+- Select encoding "UTF-8" (Not "UTF-8 (With BOM)")
+- Save the file.
 # Docker Reference Website
 
 https://pythonspeed.com/articles/docker-connection-refused/ -> regarding network connection
