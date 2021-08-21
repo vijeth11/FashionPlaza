@@ -2,19 +2,30 @@
 
 This project is of a website for selling different brands of cloth from all across the world. It uses Angular8, Ngrx store managment for fontend and django, django rest framework as backend technology. I am using sqlite and postgress sql as database. This application uses docker images technology to launch and Travis for CI\CD pipeline.
 
-## Development server
+## Application Server
+
+```console
+npm prod
+python manage.py collectstatic
+python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes  --indent=4 > data.json
+python manage.py  makemigrations
+python manage.py migrate
+python manage.py runserver
+```
+## FrontEnd server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## FrontEnd Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Backend Server
+
+python manage.py runserver
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-
 
 # Docker Commands
 
@@ -48,3 +59,7 @@ https://vsupalov.com/docker-build-time-env-values/ -> how to set environment var
 https://stackoverflow.com/questions/39597925/how-do-i-set-environment-variables-during-the-build-in-docker
 
 https://docs.docker.com/compose/environment-variables/
+
+# Django shift data from local database to docker database
+
+https://dev.to/coderasha/how-to-migrate-data-from-sqlite-to-postgresql-in-django-182h

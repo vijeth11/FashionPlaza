@@ -13,8 +13,8 @@ services:
   web:
     build: .
     command: >
-      sh -c "python3 manage.py makemigrations && 
-      python3 manage.py migrate && gunicorn --bind :8000 --workers 3 FashionPlaza.wsgi"
+      sh -c "ls -l && python3 manage.py makemigrations && python3 manage.py migrate && 
+      python3 manage.py loaddata data.json && gunicorn --bind :8000 --workers 3 FashionPlaza.wsgi"
     volumes: 
       - .:/code
     ports:
