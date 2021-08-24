@@ -9,6 +9,7 @@ WORKDIR /code/Backend/FashionPlaza
 RUN python3 manage.py dumpdata --natural-foreign \
    --exclude=auth.permission --exclude=contenttypes \
    --indent=4 > data.json
+RUN chmod 755 data.json
 WORKDIR /code/frontEnd/FashionPlaza
 RUN apt-get update -y
 RUN apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import  PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxLengthValidator, MinLengthValidator, MinValueValidator, MaxValueValidator
 from .manager import CustomerUserManager
 
 # Create your models here.
@@ -10,7 +10,7 @@ class Customer(AbstractBaseUser,PermissionsMixin):
     FirstName = models.CharField(max_length=30)
     LastName = models.CharField(max_length=30)
     Email = models.EmailField(unique=True)
-    PhoneNumber = models.IntegerField(validators = [ MinValueValidator(1000000000), MaxValueValidator(9999999999)])
+    PhoneNumber = models.CharField(validators = [ MinLengthValidator(10), MaxLengthValidator(10)], max_length=10)
     is_admin = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

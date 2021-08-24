@@ -11,7 +11,8 @@ services:
       - "5432:5432"
 
   web:
-    build: .
+    #build: .
+    image: vijeth11/fassionplaza
     command: >
       sh -c "ls -l && python3 manage.py makemigrations && python3 manage.py migrate && 
       python3 manage.py loaddata data.json && gunicorn --bind :8000 --workers 3 FashionPlaza.wsgi"

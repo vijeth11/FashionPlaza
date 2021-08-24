@@ -5,7 +5,7 @@ This project is of a website for selling different brands of cloth from all acro
 ## Application Server
 
 ```console
-npm prod
+npm run prod
 python manage.py collectstatic
 python manage.py dumpdata --natural-foreign --exclude=auth.permission --exclude=contenttypes  --indent=4 > data.json
 python manage.py  makemigrations
@@ -39,9 +39,15 @@ docker compose up -> other way to build container and run but it depends on the 
 
 docker run --rm --name FashionPlaza -it e-commerceclothwebsite_web /bin/bash -> get interactive bash terminal for the image
 
+## Docker Hub Commands
+
+```console
+docker login
+docker push yourusername/fashionplaza
+```
 ## Notes
 
-Docker Compose relies on the files present in the local file to run container even though it builds an image using docker file
+Docker Compose relies on the files present in the local file to run container even though it builds an image using docker file if you are using build command
 
 Docker file upon building creates a new copy of files in its storage and all read and write will happen to the docker storage but it will not update the local files 
 
@@ -61,6 +67,8 @@ https://docs.docker.com/engine/reference/commandline/run/
 https://docs.docker.com/compose/reference/build/
 
 https://devcenter.heroku.com/articles/django-assets -> overcome cors error when static file is accessed from frontend
+
+https://docker-curriculum.com/#our-first-image -> docker deploy to AWS and docker hub
 # Django Configure Environment based Database
 
 https://stackoverflow.com/questions/47579644/django-configuring-different-databases
