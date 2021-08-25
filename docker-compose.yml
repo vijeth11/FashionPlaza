@@ -11,13 +11,13 @@ services:
       - "5432:5432"
 
   web:
-    #build: .
+    #build: . # to build the image and use it
     image: vijeth11/fassionplaza
     command: >
       sh -c "ls -l && python3 manage.py makemigrations && python3 manage.py migrate && 
       python3 manage.py loaddata data.json && gunicorn --bind :8000 --workers 3 FashionPlaza.wsgi"
-    volumes: 
-      - .:/code
+    #volumes: 
+    #  - .:/code #this is to bind the current directory on the host to /code inside the container, allowing you to modify the code on the fly. this overides image files
     ports:
       - "8000:8000"     
     depends_on:
