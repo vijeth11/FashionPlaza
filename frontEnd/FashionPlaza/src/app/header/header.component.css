@@ -128,5 +128,8 @@
     color:rgb(245, 75, 75) !important;
 }
 
-
-
+.login, .login:hover, .cart, .cart:hover{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -23,9 +23,22 @@ export class AuthenticationComponent {
         });        
     }
 
-    goBack(){
+    goBack(email,password){
         // authenticate and route it back to previous URL
-        this.authService.login("test","test");
-        this.route.navigateByUrl(this.returnUrl);
+        this.authService.login(email,password).subscribe( data => {
+            this.route.navigateByUrl(this.returnUrl);
+        },
+        error => {
+            console.log(error);
+        });        
+    }
+
+    createUser(firstname,lastname,email,phonenumber,password1,password2,){
+        let new_user_data={FirstName:firstname,LastName:lastname,Email:email,PhoneNumber:phonenumber,password:password1,password2:password2};
+        this.authService.createCustomerUser(new_user_data)
+        .subscribe(
+            data => this.route.navigateByUrl('/login/existing'),
+            error=> console.log(error)
+        )
     }
 }

@@ -15,7 +15,7 @@ WORKDIR /code/frontEnd/FashionPlaza
 RUN apt-get update -y
 RUN apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
-RUN apt install nodejs -y
+RUN apt install -y nodejs
 RUN npm i
 RUN npm run prod
 WORKDIR /code
