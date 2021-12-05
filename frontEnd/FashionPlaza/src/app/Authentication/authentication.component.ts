@@ -10,16 +10,35 @@ import { AuthenticationService } from "../shared/services/Authentication.service
 export class AuthenticationComponent {
 
     private returnUrl:string;
+    public formType:string;
+    public headerName:string="Login";
     constructor(
         private activatedRoute:ActivatedRoute,
         private route: Router, 
         private authService:AuthenticationService){
         this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+        this.activatedRoute.params.subscribe(data => {
+            this.formType = data['type'];
+            this.headerName = this.formType.toLowerCase() == "new" ? "Create Account" : "Login";
+        });        
     }
 
-    goBack(){
+    goBack(email,password){
         // authenticate and route it back to previous URL
-        this.authService.login("test","test");
-        this.route.navigateByUrl(this.returnUrl);
+        this.authService.login(email,password).subscribe( data => {
+            this.route.navigateByUrl(this.returnUrl);
+        },
+        error => {
+            console.log(error);
+        });        
+    }
+
+    createUser(firstname,lastname,email,phonenumber,password1,password2,){
+        let new_user_data={FirstName:firstname,LastName:lastname,Email:email,PhoneNumber:phonenumber,password:password1,password2:password2};
+        this.authService.createCustomerUser(new_user_data)
+        .subscribe(
+            data => this.route.navigateByUrl('/login/existing'),
+            error=> console.log(error)
+        )
     }
 }

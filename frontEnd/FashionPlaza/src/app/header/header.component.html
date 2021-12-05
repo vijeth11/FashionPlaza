@@ -8,10 +8,15 @@
           <div class="col-sm-6 col-md-6">
             <div class="options">
               <div style="float: right;">
-                <a class="login">Log in</a>
-                <span>or</span>
-                <a class="login"> Create account</a>               
-                <a class="cart"> <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> &nbsp; Cart:1</a>
+                <ng-container *ngIf="!showLogout();else logout">
+                  <a class="login" [routerLink]="['/login/existing']">Log in</a>
+                  <span>or</span>
+                  <a class="login" [routerLink]="['/login/new']"> Create account</a> 
+                </ng-container>
+                <ng-template #logout>
+                  <a class="login" (click)="logOut()">Logout</a>
+                </ng-template>                              
+                <a class="cart" [routerLink]="['/cart']"> <span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span> &nbsp; Cart:1</a>
                 <input placeholder="search"/>
               </div>
             </div>

@@ -1,3 +1,36 @@
-<div>
-    <button (click)="goBack()">Go Back</button>
+<div class="row">
+    <div class="col-sm-12 col-md-12 authContent">
+        <div class="wrapper">
+            <div class="row">
+                <div class="header">
+                    <h1>{{headerName}}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-content">
+                    <form>
+                        <div class="form-fields">
+                            <ng-container *ngIf="formType.toLowerCase()=='existing'">                                
+                                <input type="text" placeholder="Email" #Email/>  
+                                <input type="password" placeholder="Password" #Password/>
+                                <a>Forgot your password?</a>
+                                <button type="submit" (click)="goBack(Email.value, Password.value)">Sign In</button>
+                                <a routerLink="/login/new" routerLinkActive="router-link-active" >Create Account</a>                                
+                            </ng-container>
+                            <ng-container *ngIf="formType.toLowerCase()=='new'">                                
+                                <input type="text" placeholder="First Name" #FirstName/> 
+                                <input type="text" placeholder="Last Name" #LastName/> 
+                                <input type="text" placeholder="Email" #Email/>
+                                <input type="phone" placeholder="Phone Number" #PhoneNumber/>  
+                                <input type="password" placeholder="Password" #Password1/>
+                                <input type="password" placeholder="Confirm Password" #Password2/>
+                                <button type="submit" (click)="createUser(FirstName.value,LastName.value,Email.value,PhoneNumber.value,Password1.value,Password2.value)">Create</button>
+                            </ng-container>  
+                            <a routerLink="/" routerLinkActive="router-link-active" >Return to Store</a>                          
+                        </div>                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

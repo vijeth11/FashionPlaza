@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './../shared/services/Authentication.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -20,11 +22,24 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-  constructor() { 
+  constructor(private authenticationService:AuthenticationService,private router:Router) { 
     //this.category={"women":["Shoes","Jewelry","Tops"],"men":["Shirts","Knits","Bottom"]};
+    
   }
 
   ngOnInit() {
   }
 
+  showLogout(){
+    return this.authenticationService.isAuthenticated();
+  }
+
+  logOut(){
+    this.authenticationService.logOut().subscribe(
+      data => {
+        this.router.navigate(["home"]);
+      },
+      error=>console.log(error)      
+    );
+  }
 }
