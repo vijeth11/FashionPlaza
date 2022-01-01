@@ -1,3 +1,5 @@
+import { UserProductsListResolver } from './shared/resolvers/UserProductsList.resolver';
+import { CartListEffects } from './store/effect/cart.effect';
 import { OnlyLoggedInUserGuard } from './shared/gaurds/only-logged-in-user.guard';
 import { LoadClothListResolver } from './shared/resolvers/LoadClothList.resolver';
 import { reducer } from './store/reducers/AppState.reducer';
@@ -49,11 +51,12 @@ import { AuthenticationService } from './shared/services/Authentication.service'
     InfrastructureModule,
     HttpClientModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects]),
+    EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects, CartListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
   providers: [
     LoadClothListResolver,
+    UserProductsListResolver,
     AuthenticationService,
     OnlyLoggedInUserGuard
   ],

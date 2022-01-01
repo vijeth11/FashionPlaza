@@ -1,7 +1,6 @@
 export interface Cart{
-    id:number,
     productId:number,
-    productName:number,
+    productName:string,
     productImage:string,
     productPrice:number,
     quantity:number

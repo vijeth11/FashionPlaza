@@ -1,3 +1,4 @@
+import { AddCartItemAction } from './../store/actions/cart.action';
 import { FassionPlazaService } from './../shared/services/fassionplaza.service';
 import { ProductList } from './../store/model/product-list.model';
 import { selectProductItem } from './../store/selectors/product.selectors';
@@ -39,12 +40,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
      private route: Router,
      private fassion:FassionPlazaService) {
     this.activatedRoute.params.subscribe(data => {
-      this.getProductDetails(data['id']);
-      this.fassion.cartItemAddedInProductDetail.subscribe((cart:Cart) => {
-        if(cart){
-          this.quantity = cart.quantity;
-        }
-      })
+      this.getProductDetails(data['id']);      
     });
    }
 
@@ -80,14 +76,19 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   addItemToCart(){
+    let cartItem = <Cart>{        
+      productPrice:this.product.Cost,
+      productId:this.product.id,
+      productImage:this.product.PrimaryImage,
+      productName:this.product.Name,
+      quantity:1
+    }
     if(this.auth.isAuthenticated()){
       // add the product to cart and load cart page
+      this.store.dispatch(new AddCartItemAction(cartItem));
     }else{
-      this.fassion.cartItemAddedInProductDetail.next(<Cart>{
-        id:0,
-        productPrice:this.product.Cost,
-      });
-      this.route.navigateByUrl('/login/existing');
+      this.fassion.addItemToCartList(cartItem);
+      this.route.navigateByUrl('/login/existing?returnUrl=about');
     }
   }
 }

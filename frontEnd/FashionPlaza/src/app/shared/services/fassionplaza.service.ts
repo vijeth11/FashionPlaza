@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductList } from "../../store/model/product-list.model";
 import { map } from 'rxjs/operators';
 import { Cart } from 'src/app/store/model/cart.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthenticationService } from './Authentication.service';
 
 @Injectable({
     providedIn:'root'
@@ -14,10 +15,19 @@ export class FassionPlazaService{
     private PRODUCT_URL = environment.production?"/api/":"http://localhost:8000/api/";
     private listCountPerPage:number = 18;
 
-    public cartItemAddedInProductDetail = new BehaviorSubject<Cart>(null);
-    constructor(private http: HttpClient){
+    private cartItemAddedInProductDetail = new BehaviorSubject<Cart>(null);
+
+    constructor(private http: HttpClient, private authService:AuthenticationService){
     }
     
+    addItemToCartList(cart:Cart){
+        this.cartItemAddedInProductDetail.next(cart);
+    }
+
+    getCartListAsObservable():Observable<Cart>{
+        return this.cartItemAddedInProductDetail.asObservable();
+    }
+
     getProductListItems(type:string, category:string, pageNumber: Number){        
         let url = this.PRODUCT_URL+"products/"
         if(type){
@@ -48,5 +58,19 @@ export class FassionPlazaService{
 
     getListCountPerPage():number{
         return this.listCountPerPage;
+    }
+
+    getCartListItems(){
+        let url = this.PRODUCT_URL+"cart/";
+        return this.http.get<Cart[]>(url,{
+            headers: {
+              Authorization: `Token ${this.authService.getAuthToken()}`,
+            }
+        }).pipe(
+            map((response:Cart[]) => {
+                return response.map(cart => {
+                    return { ...cart, productImage: (environment.production ? '' : "http://localhost:8000") + cart.productImage }
+                });
+        }));
     }
 }

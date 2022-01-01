@@ -14,7 +14,7 @@ export class OnlyLoggedInUserGuard implements CanActivate {
       if(this.authService.isAuthenticated()){
           return true;
       }else{
-        this.route.navigate(['login','existing'], { queryParams: { returnUrl: state.url }});
+        this.route.navigate(['login','existing'], { queryParams: { returnUrl: state.url.replace('/','') }});
         return false;
       }
   }

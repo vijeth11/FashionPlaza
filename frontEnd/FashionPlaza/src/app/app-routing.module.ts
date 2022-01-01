@@ -1,3 +1,4 @@
+import { UserProductsListResolver } from './shared/resolvers/UserProductsList.resolver';
 import { OnlyLoggedInUserGuard } from './shared/gaurds/only-logged-in-user.guard';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
@@ -14,7 +15,7 @@ import { AuthenticationComponent } from './Authentication/authentication.compone
 
 const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent, canActivate:[OnlyLoggedInUserGuard]},
-  {path: 'cart', component: CartComponent, canActivate:[OnlyLoggedInUserGuard]},
+  {path: 'cart', component: CartComponent, canActivate:[OnlyLoggedInUserGuard], resolve:{state: UserProductsListResolver}}, // resolver needs to be added
   {path: 'products/:type/detail/:id',component: ProductDetailComponent},
   {path: 'products/:type', 
     children:[

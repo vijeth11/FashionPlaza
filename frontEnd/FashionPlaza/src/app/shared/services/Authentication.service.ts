@@ -18,6 +18,10 @@ export class AuthenticationService {
     return this.is_user_authenticated;
   }
 
+  public getAuthToken(){
+    return this.authToken;
+  }
+  
   public login(username: string, password: string): Observable<any> {
     let authorizationData = "Basic " + btoa(username + ":" + password);
     let url = this.PRODUCT_URL + "login/";

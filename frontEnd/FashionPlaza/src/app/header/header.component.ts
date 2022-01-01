@@ -1,6 +1,10 @@
+import { selectCartItemsLength } from './../store/selectors/cart.selector';
+import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../shared/services/Authentication.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { AppState } from '../store/model/app-state.models';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +14,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   category:any = {};
+  cartListTotal$:Observable<number>=of(0);
   @Input() set categories(data){
     this.category["women"] = [];
     this.category["men"] = [];
@@ -22,9 +27,9 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
-  constructor(private authenticationService:AuthenticationService,private router:Router) { 
+  constructor(private authenticationService:AuthenticationService,private router:Router,private store:Store<AppState>) { 
     //this.category={"women":["Shoes","Jewelry","Tops"],"men":["Shirts","Knits","Bottom"]};
-    
+    this.cartListTotal$ = this.store.pipe(select(selectCartItemsLength));
   }
 
   ngOnInit() {

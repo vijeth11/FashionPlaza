@@ -10,51 +10,32 @@
         <span>Total</span>
       </div>
       <hr>
-      <div class="row">
-        <div class="col-sm-6 col-md-6">
-          <div class="item">
-            <div class="item-image">
-              <img [src]="'../../assets/images/women/jumpsuits/jumpsuit1.jpg'">
-            </div>
-            <div class="item-details">
-              <span>Striped Sweater in Navy/ White</span>
-              <a>Remove</a>
+      <ng-container *ngFor="let cart of cartItems$ | async">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <div class="item">
+              <div class="item-image">
+                <img [src]="cart.productImage">
+              </div>
+              <div class="item-details">
+                <span>{{cart.productName}}</span>
+                <a>Remove</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="table-row">
-            <span>$391.00</span>
-            <input value=1>
-            <span>$391.00</span>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-6 col-md-6">
-          <div class="item">
-            <div class="item-image">
-              <img [src]="'../../assets/images/women/jumpsuits/jumpsuit1.jpg'">
-            </div>
-            <div class="item-details">
-              <span>Striped Sweater in Navy/ White</span>
-              <a>Remove</a>
+          <div class="col-sm-6 col-md-6">
+            <div class="table-row">
+              <span>${{+cart.productPrice}}</span>
+              <input [value]="cart.quantity">
+              <span>${{+cart.productPrice * +cart.quantity}}</span>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-6">
-          <div class="table-row">
-            <span>$391.00</span>
-            <input value=1>
-            <span>$391.00</span>
-          </div>
-        </div>
-      </div>
-      <hr>
+        <hr>
+      </ng-container>      
       <div class="table-footer">
         <div class="content">
-          <p class="subtotal">Subtotal <span>$566.00</span></p>
+          <p class="subtotal">Subtotal <span>${{getTotalCost(cartItems$ | async)}}</span></p>
           <p class="instruction">Taxes and shipping calculated at checkout</p>
           <div class="buttons">
             <button class="normal-button"> Continue Shopping</button>
