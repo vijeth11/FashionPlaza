@@ -50,7 +50,15 @@ import { AuthenticationService } from './shared/services/Authentication.service'
     AppRoutingModule,
     InfrastructureModule,
     HttpClientModule,
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot(reducer,{
+      runtimeChecks:{
+        strictStateImmutability:true,
+        strictActionImmutability:true,
+        strictActionSerializability:true,
+        strictStateSerializability:true,
+        strictActionTypeUniqueness:true,
+      }
+    }),
     EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects, CartListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
   ],
