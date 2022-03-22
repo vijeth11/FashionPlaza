@@ -61,6 +61,7 @@ import { AuthenticationService } from './shared/services/Authentication.service'
     }),
     EffectsModule.forRoot([ProductListEffects, ProductEffects, ProductCategoryListEffects, CartListEffects]),
     StoreDevtoolsModule.instrument({maxAge:25, logOnly:environment.production})
+    
   ],
   providers: [
     LoadClothListResolver,

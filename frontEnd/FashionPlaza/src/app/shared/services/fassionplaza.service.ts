@@ -73,4 +73,15 @@ export class FassionPlazaService{
                 });
         }));
     }
+
+    addOrUpdateCartItemsToDatabase(carts:Cart[]):Observable<any>{
+        let url = this.PRODUCT_URL+"cart/";
+        return this.http.post<any>(url,{"carts":carts.map(x => { 
+                return {
+                    "Quantity": x.quantity,
+                    "ProductId": x.productId
+                }
+            })
+        });
+    }
 }

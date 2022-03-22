@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { of } from "rxjs";
+import { catchError, map, mergeMap } from "rxjs/operators";
 import { FassionPlazaService } from "src/app/shared/services/fassionplaza.service";
-import { CartActionType, LoadCartListAction, LoadCartListFailureAction, LoadCartListSuccessAction } from "../actions/cart.action";import { LoadProductFailureAction } from "../actions/product.action";
+import { AddOrUpdateCartItemsAction, CartActionType, LoadCartListAction, LoadCartListFailureAction, LoadCartListSuccessAction } from "../actions/cart.action";
 
 @Injectable()
 export class CartListEffects{
@@ -15,6 +16,11 @@ export class CartListEffects{
                 catchError(error => of(new LoadCartListFailureAction(error)))
             )
         )
+    )
+
+    @Effect() addToCart$ = this.action$.pipe(
+        ofType<AddOrUpdateCartItemsAction>(CartActionType.ADD_OR_UPDATE_CART_ITEMS),
+        mergeMap((data) => this.cartListService.addOrUpdateCartItemsToDatabase(data.payload))
     )
 
     constructor(private action$:Actions, private cartListService:FassionPlazaService){

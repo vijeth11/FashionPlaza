@@ -33,12 +33,10 @@ export function CartListReducer(state:CartState = initialState, action:CartListA
                 loading:false,
                 error:action.payload
             }    
-        case CartActionType.ADD_CART_ITEM:
-            if(!cartAdapter.getSelectors().selectAll(state).some((cart:Cart)=> cart.productId == action.payload.productId && cart.productName == action.payload.productName))
-                return cartAdapter.addOne(action.payload,{
-                    ...state
-                });
-            return state;
+        case CartActionType.ADD_OR_UPDATE_CART_ITEMS:
+            return cartAdapter.upsertMany(action.payload,{ 
+                ...state 
+            });
         default:
             return state;
     }

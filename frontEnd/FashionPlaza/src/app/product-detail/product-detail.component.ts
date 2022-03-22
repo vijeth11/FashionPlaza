@@ -1,4 +1,4 @@
-import { AddCartItemAction } from './../store/actions/cart.action';
+import { AddOrUpdateCartItemsAction } from './../store/actions/cart.action';
 import { FassionPlazaService } from './../shared/services/fassionplaza.service';
 import { ProductList } from './../store/model/product-list.model';
 import { selectProductItem } from './../store/selectors/product.selectors';
@@ -85,10 +85,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
     if(this.auth.isAuthenticated()){
       // add the product to cart and load cart page
-      this.store.dispatch(new AddCartItemAction(cartItem));
+      this.store.dispatch(new AddOrUpdateCartItemsAction([cartItem]));
     }else{
       this.fassion.addItemToCartList(cartItem);
       this.route.navigateByUrl('/login/existing?returnUrl=about');
     }
-  }
+  }  
 }

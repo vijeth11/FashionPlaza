@@ -5,7 +5,7 @@ export enum CartActionType{
     LOAD_CART_LIST = '[CARTLIST] Load Cart',
     LOAD_CART_LIST_SUCCESS = '[CARTLIST] Load Cart Success',
     LOAD_CART_LIST_FAILURE = '[CARTLIST] Load Cart Failure',
-    ADD_CART_ITEM = '[CARTLIST] Add Cart Item',
+    ADD_OR_UPDATE_CART_ITEMS = '[CARTLIST] Add or Update Cart Items',
 }
 
 export class LoadCartListAction implements Action{
@@ -23,13 +23,13 @@ export class LoadCartListFailureAction implements Action{
     constructor(public payload:Error){}
 }
 
-export class AddCartItemAction implements Action{
+export class AddOrUpdateCartItemsAction implements Action{
     // add an effect to send data to backend to save cart item
-    readonly type = CartActionType.ADD_CART_ITEM
-    constructor(public payload:Cart){}
+    readonly type = CartActionType.ADD_OR_UPDATE_CART_ITEMS
+    constructor(public payload:Cart[]){}
 }
 
 export type CartListAction = LoadCartListAction
 | LoadCartListSuccessAction
 | LoadCartListFailureAction
-| AddCartItemAction;
+| AddOrUpdateCartItemsAction;

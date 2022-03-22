@@ -26,7 +26,7 @@
           <div class="col-sm-6 col-md-6">
             <div class="table-row">
               <span>${{+cart.productPrice}}</span>
-              <input [value]="cart.quantity">
+              <input (input)="onQuantityUpdate($event,cart)" [value]="cart.quantity">
               <span>${{+cart.productPrice * +cart.quantity}}</span>
             </div>
           </div>
@@ -38,8 +38,8 @@
           <p class="subtotal">Subtotal <span>${{getTotalCost(cartItems$ | async)}}</span></p>
           <p class="instruction">Taxes and shipping calculated at checkout</p>
           <div class="buttons">
-            <button class="normal-button"> Continue Shopping</button>
-            <button class="normal-button"> Update cart</button>
+            <button class="normal-button" [routerLink]="['/']"> Continue Shopping</button>
+            <button class="normal-button" (click)="updateTheCart()" [disabled]="!isAuthenticated"> Update cart</button>
             <button>Check out</button>
           </div>
         </div>
