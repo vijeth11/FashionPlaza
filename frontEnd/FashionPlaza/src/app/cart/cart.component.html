@@ -10,7 +10,7 @@
         <span>Total</span>
       </div>
       <hr>
-      <ng-container *ngFor="let cart of cartItems$ | async">
+      <ng-container *ngFor="let cart of cartItems">
         <div class="row">
           <div class="col-sm-6 col-md-6">
             <div class="item">
@@ -19,14 +19,14 @@
               </div>
               <div class="item-details">
                 <span>{{cart.productName}}</span>
-                <a>Remove</a>
+                <a style="cursor: pointer;" (click)="removeTheItem(cart)">Remove</a>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-6">
             <div class="table-row">
               <span>${{+cart.productPrice}}</span>
-              <input (input)="onQuantityUpdate($event,cart)" [value]="cart.quantity">
+              <input type="number" min="1" (input)="onQuantityUpdate($event,cart)" [value]="cart.quantity">
               <span>${{+cart.productPrice * +cart.quantity}}</span>
             </div>
           </div>
@@ -35,12 +35,12 @@
       </ng-container>      
       <div class="table-footer">
         <div class="content">
-          <p class="subtotal">Subtotal <span>${{getTotalCost(cartItems$ | async)}}</span></p>
+          <p class="subtotal">Subtotal <span>${{getTotalCost()}}</span></p>
           <p class="instruction">Taxes and shipping calculated at checkout</p>
           <div class="buttons">
             <button class="normal-button" [routerLink]="['/']"> Continue Shopping</button>
             <button class="normal-button" (click)="updateTheCart()" [disabled]="!isAuthenticated"> Update cart</button>
-            <button>Check out</button>
+            <button (click)="routeToCheckout()">Check out</button>
           </div>
         </div>
       </div>

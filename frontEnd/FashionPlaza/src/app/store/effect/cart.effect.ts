@@ -20,7 +20,11 @@ export class CartListEffects{
 
     @Effect() addToCart$ = this.action$.pipe(
         ofType<AddOrUpdateCartItemsAction>(CartActionType.ADD_OR_UPDATE_CART_ITEMS),
-        mergeMap((data) => this.cartListService.addOrUpdateCartItemsToDatabase(data.payload))
+        mergeMap((data) => this.cartListService.addOrUpdateCartItemsToDatabase(data.payload)
+            .pipe(
+                map(() => new LoadCartListAction())
+            )
+        )
     )
 
     constructor(private action$:Actions, private cartListService:FassionPlazaService){

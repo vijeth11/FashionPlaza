@@ -24,7 +24,7 @@ export class LoadCartListFailureAction implements Action{
 }
 
 export class AddOrUpdateCartItemsAction implements Action{
-    // add an effect to send data to backend to save cart item
+    
     readonly type = CartActionType.ADD_OR_UPDATE_CART_ITEMS
     constructor(public payload:Cart[]){}
 }

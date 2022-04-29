@@ -1,3 +1,5 @@
+import { Subscription } from "rxjs";
+import { combineAll, concatAll } from "rxjs/operators";
 import { CartActionType, CartListAction } from "../actions/cart.action";
 import { cartAdapter, CartState } from "../entity/cart-entity";
 import { Cart } from "../model/cart.model";
@@ -34,9 +36,10 @@ export function CartListReducer(state:CartState = initialState, action:CartListA
                 error:action.payload
             }    
         case CartActionType.ADD_OR_UPDATE_CART_ITEMS:
-            return cartAdapter.upsertMany(action.payload,{ 
-                ...state 
-            });
+            let deleteCarts = action.payload.filter(cart => cart.quantity == 0);
+            let addCarts = action.payload.filter(cart => cart.quantity != 0);
+            let updatedState = cartAdapter.upsertMany(addCarts,{...state});
+            return cartAdapter.removeMany(deleteCarts.map(x => x.productId.toString()),{...updatedState});
         default:
             return state;
     }

@@ -82,6 +82,10 @@ export class FassionPlazaService{
                     "ProductId": x.productId
                 }
             })
+        },{
+            headers: {
+                Authorization: `Token ${this.authService.getAuthToken()}`
+            }
         });
     }
 }

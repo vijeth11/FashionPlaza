@@ -1,3 +1,4 @@
+from functools import partial
 from rest_framework import mixins, viewsets, status
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -61,11 +62,16 @@ class CartListView(mixins.ListModelMixin,
           cart = Cart.objects.filter(ProductId=data["ProductId"],UserId=userId).first()
           if cart is None:
               serializer_class = self.get_serializer_class()
-              serialize = serializer_class(data)
+              data["UserId"] = userId
+              serialize = serializer_class(cart, data=data, partial=True)
+              serialize.is_valid(raise_exception=True)
               serialize.save()
           else:
-              cart.Quantity = data["Quantity"]
-              cart.save()
+              if data["Quantity"] == 0:
+                  cart.delete()
+              else:
+                cart.Quantity = data["Quantity"]
+                cart.save()
           return True
 class WishListView(mixins.ListModelMixin,
                    mixins.CreateModelMixin,
